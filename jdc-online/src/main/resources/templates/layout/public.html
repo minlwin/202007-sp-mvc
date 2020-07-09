@@ -3,9 +3,10 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>JDC Online</title>
+<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">JDC Online</title>
 
 <link rel="stylesheet" th:href="@{/resources/semantic.min.css}" />
+<link rel="stylesheet" th:href="@{/resources/application.css}" />
 
 <script th:src="@{/resources/jquery.min.js}"></script>
 <script th:src="@{/resources/semantic.min.js}"></script>
@@ -13,7 +14,7 @@
 </head>
 <body>
 
-	<nav class="ui green inverted secondary pointing menu">
+	<nav class="ui teal inverted secondary pointing top fixed menu">
 
 		<div class="ui container">
 
@@ -30,11 +31,13 @@
 
 	</nav>
 	
-	<div class="ui container">
+	<div class="ui container page-content">
 		
 		<div class="ui header">
 			<span layout:fragment="title">Default Title</span>
 		</div>
+		
+		<div layout:fragment="cover-image"></div>
 		
 		<div layout:fragment="content">
 			Default Content
