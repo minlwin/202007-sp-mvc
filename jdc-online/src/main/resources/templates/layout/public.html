@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JDC Online</title>
+
+<link rel="stylesheet" th:href="@{/resources/semantic.min.css}" />
+
+<script th:src="@{/resources/jquery.min.js}"></script>
+<script th:src="@{/resources/semantic.min.js}"></script>
+
+</head>
+<body>
+
+	<nav class="ui green inverted secondary pointing menu">
+
+		<div class="ui container">
+
+			<a th:href="@{/public}" class="active item"> <i class="home icon"></i>
+				JDC Online
+			</a>
+
+			<div class="right menu">
+
+				<a class="item" onclick="showLoginView()"> <i class="sign in icon"></i> Sign In
+				</a>
+			</div>
+		</div>
+
+	</nav>
+	
+	<div class="ui container">
+		
+		<div class="ui header">
+			<span layout:fragment="title">Default Title</span>
+		</div>
+		
+		<div layout:fragment="content">
+			Default Content
+		</div>
+	
+	</div>
+	
+	
+	<div id="loginModal" class="ui tiny modal">
+		<div class="ui header"><i class="sign in icon"></i> JDC Login</div>
+		
+		<div class="content">
+			
+			<form class="ui form">
+				
+				<div class="field">
+					<label>Login Id</label>
+					<div class="ui left icon labeled input">
+						<i class="user icon"></i>
+						<input type="text" placeholder="Enter Login Id" />
+					</div>
+				</div>	
+				
+				<div class="field">
+					<label>Password</label>
+					<div class="ui left icon labeled input">
+						<i class="key icon"></i>
+						<input type="password" placeholder="Enter Password" />
+					</div>
+				</div>		
+			
+			</form>
+
+		</div>
+		
+		<div class="actions">
+			<button class="ui icon labeled button">
+				<i class="sign in icon"></i> Login
+ 			</button>
+		</div>
+	</div>
+	
+	
+	<script>
+	
+		function showLoginView() {
+			$('#loginModal').modal('show')
+			return false
+		}
+	</script>
+
+</body>
+</html>
