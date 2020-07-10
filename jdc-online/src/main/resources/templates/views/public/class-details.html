@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/public}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Class</title>
 </head>
 <body>
 
+	<div layout:fragment="title">Java Basic Course</div>
+
+	<div layout:fragment="content">
+	
+		<!-- Cover Image -->
+		<div class="ui stacked segment">
+			<img class="ui fluid image" th:src="@{/resources/images/class-details-cover.png}" />
+		</div>
+		
+		<!-- Other Informations -->
+		<div id="classTab" class="ui pointing teal inverted menu">
+			<span data-tab="class" class="item active">Class Information</span>
+			<span data-tab="course" class="item">Course Information</span>
+			<span data-tab="teacher" class="item">Teacher Information</span>
+			<span data-tab="registration" class="item">Registration</span>
+		</div>
+		
+		<div class="ui tab active" data-tab="class">
+			<div class="ui segment">
+				<!-- Class Title -->
+				<!-- Start Date -->
+				<!-- Days -->
+				<!-- Times -->
+				<!-- Duration -->
+				<!-- Fees -->
+			</div>
+		</div>
+
+		<div class="ui tab" data-tab="course">
+			<div class="ui segment">
+				
+			</div>
+		</div>
+		
+
+		<div class="ui tab" data-tab="teacher">
+			<div class="ui segment">
+				<h3>Teacher Info</h3>
+			</div>
+		</div>
+
+		<div class="ui tab" data-tab="registration">
+			<div class="ui segment">
+				<h3>Registration Info</h3>
+			</div>
+		</div>
+		
+		<script>
+			$(() => {
+				$('#classTab .item').tab()
+			})
+		</script>
+	</div>
+	
 </body>
 </html>

@@ -27,17 +27,21 @@
 
 			<div class="column" th:each="item : ${classes}">
 
-				<div class="ui fluid link card">
-					<div class="image">
+				<a th:href="@{/public/{id}(id=${item.id})}" class="ui fluid link card">
+					<span class="image">
 						<img th:src="@{/resources/images/course.png}" />
-					</div>
-					<div class="content">
-						<div class="header">Course Name</div>
-						<span>2020/10/02</span> 
-						<span class="right floated label">180,000 MMK</span>
-					</div>
-
-				</div>
+					</span>
+					<span class="content">
+						<span class="header">Course Name</span>
+						<span class="meta">180,000 MMK</span>
+					</span>
+					<span class="extra content">
+						<span><i class="user icon"></i> 25 Students</span>
+						<span class="right floated">
+							<i class="calendar icon"></i> Start 2020/08/01
+						</span>
+					</span>
+				</a>
 			</div>
 
 
