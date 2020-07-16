@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Online Class Information</title>
+</head>
+<body>
+	
+	<div th:fragment="info">
+		<h3 th:text="${classRoom.name}"></h3>
+		
+		<div class="ui list">
+			<!-- Level -->
+			<div class="item">
+				<i class="book icon"></i>
+				<div class="content"><span th:text="${classRoom.course.name}"></span></div>
+			</div>
+			<!-- Start Date -->
+			<div class="item">
+				<i class="calendar icon"></i>
+				<div class="content" th:text="${classRoom.startDate}"></div>
+			</div>
+			<!-- Days -->
+			<div class="item">
+				<i class="calendar icon"></i>
+				<div class="content" th:text="${classRoom.days}"></div>
+			</div>
+			<!-- Times -->
+			<div class="item">
+				<i class="clock icon"></i>
+				<div class="content" th:text="${classRoom.times}"></div>
+			</div>
+			
+			<!-- Duration -->
+			<div class="item">
+				<i class="hourglass start icon"></i>
+				<div class="content" th:text="${classRoom.duration + ' Months'}"></div>
+			</div>
+			<!-- Fees -->
+			<div class="item">
+				<i class="usd icon"></i>
+				<div class="content" th:text="${classRoom.fees + ' MMK'}"></div>
+			</div>
+			<!-- Requirements -->
+			<div class="item">
+				<i class="hand point right outline icon"></i>
+				<div class="content" th:text="${classRoom.requirements}"></div>
+			</div>
+		</div>	
+	</div>
+	
+</body>
+</html>

@@ -10,6 +10,6 @@ public class LoginController {
 
 	@PostMapping
 	public String login() {
-		return "";
+		return "redirect:/office";
 	}
 }

@@ -7,58 +7,54 @@
 </head>
 <body>
 
-	<div layout:fragment="title">Java Basic Course</div>
+	<div layout:fragment="title"><span th:text="${classRoom.course.name}"></span></div>
 
 	<div layout:fragment="content">
 	
-		<!-- Cover Image -->
-		<div class="ui stacked segment">
-			<img class="ui fluid image" th:src="@{/resources/images/class-details-cover.png}" />
-		</div>
+		<div class="ui padded stacked segment">
 		
-		<!-- Other Informations -->
-		<div id="classTab" class="ui pointing teal inverted menu">
-			<span data-tab="class" class="item active">Class Information</span>
-			<span data-tab="course" class="item">Course Information</span>
-			<span data-tab="teacher" class="item">Teacher Information</span>
-			<span data-tab="registration" class="item">Registration</span>
-		</div>
-		
-		<div class="ui tab active" data-tab="class">
-			<div class="ui segment">
-				<!-- Class Title -->
-				<!-- Start Date -->
-				<!-- Days -->
-				<!-- Times -->
-				<!-- Duration -->
-				<!-- Fees -->
-			</div>
-		</div>
-
-		<div class="ui tab" data-tab="course">
-			<div class="ui segment">
+			<div class="ui grid">
+				
+				<div class="four wide column">
+					<div class="ui fluid image mb-18">
+						<img th:src="@{/resources/images/course.png}" alt="" />	
+					</div>
+				
+					
+					<a th:href="@{/public/{id}/apply(id=${classRoom.id})}" class="ui animated fade fluid red button">
+						
+						<span class="visible content">Apply Course</span>
+						<span class="hidden content">
+							<i class="smile icon"></i> Thank You!
+						</span>
+					
+					</a>
+				</div>
+				
+				<div class="twelve wide column mb-18">
+					
+					<!-- Class Title -->
+					<div th:replace="fragments/class-info :: info"></div>
+				
+				
+					<!-- Course Information -->
+					<h3>Course Outline</h3>
+					
+					<p th:text="${classRoom.course.description}"></p>
+				
+					<div class="ui list">
+						<div class="item" th:each="content : ${classRoom.course.contents}" >
+							<i class="check icon"></i>
+							<div class="content">
+								<div class="header" th:text="${content.title}">Language Fundamentals</div>
+								<div class="description" th:text="${content.details}">Collections are heterogeneous groups of components which are usually</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				
 			</div>
 		</div>
-		
-
-		<div class="ui tab" data-tab="teacher">
-			<div class="ui segment">
-				<h3>Teacher Info</h3>
-			</div>
-		</div>
-
-		<div class="ui tab" data-tab="registration">
-			<div class="ui segment">
-				<h3>Registration Info</h3>
-			</div>
-		</div>
-		
-		<script>
-			$(() => {
-				$('#classTab .item').tab()
-			})
-		</script>
 	</div>
 	
 </body>

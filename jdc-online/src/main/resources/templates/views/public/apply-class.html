@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/public}">
+<head>
+<meta charset="UTF-8">
+<title>Application</title>
+</head>
+<body>
+
+	<div layout:fragment="title">Application for Java Basic July Intake</div>
+
+	<div layout:fragment="content">
+	
+		<div class="ui padded stacked segment">
+			<div class="ui grid">
+				
+				<div class="four wide column">
+				
+					<div class="ui fluid image">
+						<img th:src="@{/resources/images/course.png}" alt="" />
+					</div>
+				</div>
+				
+				<div class="twelve wide column mb-18">
+					
+					<div th:replace="fragments/class-info :: info"></div>
+					
+					<div class="ui hidden divider"></div>
+					
+					<div class="ui two columns grid">
+					
+						<form method="post" th:if="${form != null}" class="column ui form" th:object="${form}">
+							<h3>Application</h3>
+						
+							<div class="field">
+								<label>Name</label>
+								<div class="ui left icon input">
+									<i class="user icon"></i>
+									<input th:field="*{name}" type="text" placeholder="Enter Name" />
+								</div>
+							</div>
+
+							<div class="field">
+								<label>Phone</label>
+								<div class="ui left icon input">
+									<i class="phone icon"></i>
+									<input th:field="*{phone}" type="text" placeholder="Enter Phone Number" />
+								</div>
+							</div>
+
+							<div class="field">
+								<label>Email</label>
+								<div class="ui left icon input">
+									<i class="envelope outline icon"></i>
+									<input th:field="*{email}"  type="text" placeholder="Enter Email Address" />
+								</div>
+							</div>
+							
+							<div class="field">
+								<button type="submit" class="ui fade animated red button">
+									<span class="visible content">Apply This Class</span>
+									<span class="hidden content">Thank you!</span>
+								</button>
+							</div>
+						</form>
+						
+						<div th:if="${form == null}">
+							<h3>Application is done successfully!</h3>
+							
+							<p>Please check your email and Sign in to class room!</p>
+						</div>
+						
+					</div>
+														
+				</div>
+					
+			</div>
+		</div>
+	
+	</div>
+</body>
+</html>
