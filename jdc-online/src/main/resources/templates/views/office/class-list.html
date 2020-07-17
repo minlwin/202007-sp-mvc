@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/office}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Classes</title>
 </head>
 <body>
+
+	<div layout:fragment="title">
+		Online Class Management
+	</div>
+	
+	<div layout:fragment="content">
+		
+		<!-- Search -->
+		<div class="ui padded segment">
+			<div class="ui header">
+				<i class="search icon"></i> Search
+			</div>
+			
+			<div class="ui form">
+				<div class="five fields">
+					
+					<div class="field">
+						<label>Course</label>
+						<input type="text" placeholder="Search Course" />
+					</div>
+					
+					<div class="field">
+						<label>Teacher</label>
+						<input type="text" placeholder="Search Teacher" />
+					</div>
+
+					<div class="field">
+						<label>From</label>
+						<input type="date" placeholder="Date From" />
+					</div>
+
+					<div class="field">
+						<label>To</label>
+						<input type="date" placeholder="Date To" />
+					</div>
+
+					<div class="field">
+						<label>&nbsp;</label>
+						<button class="ui icon labeled button">
+							<i class="search icon"></i> Search
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		
+		<!-- List -->
+		<table class="ui table">
+			
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>Start Date</th>
+					<th>Teacher</th>
+					<th>Days</th>
+					<th>Times</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>Java SE</td>
+					<td>2020/08/01</td>
+					<td>Min Lwin</td>
+					<td>Sat - Sun</td>
+					<td>13:00 - 18:00</td>
+					<td>Available</td>
+					<td></td>
+				</tr>
+				
+			</tbody>
+		</table>
+	
+	</div>
 
 </body>
 </html>

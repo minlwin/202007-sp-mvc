@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/office}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Registrations</title>
 </head>
 <body>
+
+	<div layout:fragment="title">
+		Registration Management
+	</div>
+	
+	<div layout:fragment="content">
+		
+		<!-- Search -->
+		<div class="ui padded segment">
+			<div class="ui header">
+				<i class="search icon"></i> Search
+			</div>
+			
+			<div class="ui form">
+			
+				<div class="four fields">
+				
+					<div class="field">
+						<label>Status</label>
+						<select class="ui dropdown">
+							<option>All</option>
+							<option>Pending</option>
+							<option>Attended</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label>Course</label>
+						<input type="text" placeholder="Search Course" />
+					</div>
+
+					<div class="field">
+						<label>Student</label>
+						<input type="text" placeholder="Search Student" />
+					</div>
+					
+					<div class="field">
+						<label>&nbsp;</label>
+						<button class="ui icon labeled button">
+							<i class="search icon"></i> Search
+						</button>
+					</div>
+					
+
+				</div>
+			
+			</div>
+		</div>
+		
+		<!-- Data List -->
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>Start Date</th>
+					<th>Status</th>
+					<th>Student</th>
+					<th>Phone</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+		</table>
+		
+		<script type="text/javascript">
+		
+			$(() => $('.ui.dropdown').dropdown())
+		</script>
+	
+	</div>
+	
+	
 
 </body>
 </html>

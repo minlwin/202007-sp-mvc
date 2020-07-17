@@ -1,10 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/office}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Members</title>
 </head>
 <body>
 
+	<div layout:fragment="title">
+		Member Management
+	</div>
+	
+	
+	<div layout:fragment="content">
+		
+		<!-- Search -->
+		<div class="ui padded segment">
+			<div class="ui header">
+				<i class="search icon"></i>
+				Search
+			</div>
+			<form class="ui form">
+				
+				<div class="three fields">
+					<div class="field">
+						<label>Role</label>
+						<select name="r" class="ui dropdown">
+							<option>Office</option>
+							<option>Teacher</option>
+							<option>Student</option>
+						</select>
+					</div>
+					
+					<div class="field">
+						<label>Name</label>
+						<input name="n" type="text" placeholder="Search Name" />
+					</div>
+					
+					<div class="field">
+						<label>&nbsp;</label>
+						<button class="ui icon labeled button">
+							<i class="search icon"></i> Search
+						</button>
+					</div>
+				
+				</div>
+			</form>
+		</div>
+		
+		<!-- Member List -->
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Role</th>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>Office</td>
+					<td>Thidar</td>
+					<td>098767888</td>
+					<td>thidar@gmail.com</td>
+					<td>Active</td>
+					<td>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<script>
+			$(() => $('.ui.dropdown').dropdown())
+		</script>
+	
+	</div>
 </body>
 </html>

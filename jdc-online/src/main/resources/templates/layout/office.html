@@ -22,16 +22,16 @@
 				JDC Online Office
 			</a>
 
-			<a th:href="@{/office}" class="item"> <i class="users icon"></i>
-				Teachers
+			<a th:href="@{/office/registrations}" class="item"> <i class="folder open outline icon"></i>
+				Registrations
 			</a>
 
-			<a th:href="@{/office}" class="item"> <i class="calendar outline icon"></i>
+			<a th:href="@{/office/classes}" class="item"> <i class="calendar outline icon"></i>
 				Online Classes
 			</a>
 
-			<a th:href="@{/office}" class="item"> <i class="folder open outline icon"></i>
-				Registrations
+			<a th:href="@{/office/members}" class="item"> <i class="users icon"></i>
+				Members
 			</a>
 
 			<div class="right menu">
@@ -57,48 +57,6 @@
 	</div>
 	
 	
-	<div id="loginModal" class="ui tiny modal">
-		<div class="ui header"><i class="sign in icon"></i> JDC Login</div>
-		
-		<div class="content">
-			
-			<form class="ui form">
-				
-				<div class="field">
-					<label>Login Id</label>
-					<div class="ui left icon labeled input">
-						<i class="user icon"></i>
-						<input type="text" placeholder="Enter Login Id" />
-					</div>
-				</div>	
-				
-				<div class="field">
-					<label>Password</label>
-					<div class="ui left icon labeled input">
-						<i class="key icon"></i>
-						<input type="password" placeholder="Enter Password" />
-					</div>
-				</div>		
-			
-			</form>
-
-		</div>
-		
-		<div class="actions">
-			<button class="ui icon labeled button">
-				<i class="sign in icon"></i> Login
- 			</button>
-		</div>
-	</div>
-	
-	
-	<script>
-	
-		function showLoginView() {
-			$('#loginModal').modal('show')
-			return false
-		}
-	</script>
 
 </body>
 </html>
