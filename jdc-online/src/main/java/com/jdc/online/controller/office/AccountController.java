@@ -21,8 +21,8 @@ public class AccountController {
 
 	@GetMapping
 	public String search(
-			@RequestParam(required = false, name = "r") String role, 
-			@RequestParam(required = false, name = "n") String name,
+			@RequestParam(required = false) String role, 
+			@RequestParam(required = false) String name,
 			ModelMap model
 	) {
 		

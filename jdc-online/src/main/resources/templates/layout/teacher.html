@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Office</title>
+<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Teachers</title>
 
 <link rel="stylesheet" th:href="@{/resources/semantic.min.css}" />
 <link rel="stylesheet" th:href="@{/resources/application.css}" />
@@ -18,20 +18,16 @@
 
 		<div class="ui container">
 
-			<a th:href="@{/office}" class="active item"> <i class="home icon"></i>
+			<a th:href="@{/teacher}" class="active item"> <i class="home icon"></i>
 				JDC Online Office
 			</a>
 
-			<a th:href="@{/office/registrations}" class="item"> <i class="folder open outline icon"></i>
+			<a th:href="@{/teacher/courses}" class="item"> <i class="folder open outline icon"></i>
 				Registrations
 			</a>
 
-			<a th:href="@{/office/classes}" class="item"> <i class="calendar outline icon"></i>
+			<a th:href="@{/teacher/classes}" class="item"> <i class="calendar outline icon"></i>
 				Online Classes
-			</a>
-
-			<a th:href="@{/office/members}" class="item"> <i class="users icon"></i>
-				Members
 			</a>
 
 			<div class="right menu">

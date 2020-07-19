@@ -1,7 +1,6 @@
-package com.jdc.online.controller.office;
+package com.jdc.online.controller.teacher;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,20 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jdc.online.config.model.entity.OnlineClass;
 import com.jdc.online.service.ClassesService;
 
-@Controller("OfficeClasses")
-@RequestMapping("office/classes")
+@Controller("TeacherClasses")
+@RequestMapping("teacher/classes")
 public class ClassController {
 	
 	@Autowired
 	private ClassesService service;
 
 	@GetMapping
-	public String search(
+	public String index(
 			@RequestParam(required = false) String course,
-			@RequestParam(required = false) String teacher,
 			@DateTimeFormat(iso = ISO.DATE)
 			@RequestParam(required = false) LocalDate from,
 			@DateTimeFormat(iso = ISO.DATE)
@@ -33,9 +30,9 @@ public class ClassController {
 			ModelMap model
 			) {
 		
-		List<OnlineClass> list = service.search(course, teacher, from, to);
-		model.put("list", list);
+		String teacher = "";
 		
-		return "/views/office/class-list";
+		model.put("list", service.search(course, teacher, from, to));
+		return "/views/teacher/class-list";
 	}
 }

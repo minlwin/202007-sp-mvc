@@ -1,6 +1,7 @@
 package com.jdc.online.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,6 +52,10 @@ public class ClassesService {
 		result.setRequirements("Basic Computer Concepts");
 		
 		return result;
+	}
+
+	public List<OnlineClass> search(String course, String teacher, LocalDate from, LocalDate to) {
+		return new ArrayList<>();
 	}
 
 }
