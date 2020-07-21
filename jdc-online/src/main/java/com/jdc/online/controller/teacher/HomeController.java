@@ -3,6 +3,7 @@ package com.jdc.online.controller.teacher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller("TeacherHome")
@@ -22,4 +23,10 @@ public class HomeController {
 		
 		return "/views/teacher/home";
 	}
+	
+	@ModelAttribute(name = "page")
+	public String page() {
+		return "home";
+	}
+
 }

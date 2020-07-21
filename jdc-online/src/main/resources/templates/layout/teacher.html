@@ -14,19 +14,19 @@
 </head>
 <body>
 
-	<nav class="ui teal inverted secondary pointing top fixed menu">
+	<nav class="ui blue inverted secondary pointing top fixed menu">
 
 		<div class="ui container">
 
-			<a th:href="@{/teacher}" class="active item"> <i class="home icon"></i>
-				JDC Online Office
+			<a th:href="@{/teacher}" class="item" th:classappend="${page == 'home'} ? active"> <i class="home icon"></i>
+				JDC Online Teacher
 			</a>
 
-			<a th:href="@{/teacher/courses}" class="item"> <i class="folder open outline icon"></i>
-				Registrations
+			<a th:href="@{/teacher/courses}" class="item" th:classappend="${page == 'courses'} ? active"> <i class="book icon"></i>
+				Courses
 			</a>
 
-			<a th:href="@{/teacher/classes}" class="item"> <i class="calendar outline icon"></i>
+			<a th:href="@{/teacher/classes}" class="item" th:classappend="${page == 'classes'} ? active"> <i class="calendar outline icon"></i>
 				Online Classes
 			</a>
 

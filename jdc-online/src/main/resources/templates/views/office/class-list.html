@@ -21,7 +21,7 @@
 			</div>
 			
 			<div class="ui form">
-				<div class="five fields">
+				<div class="four fields">
 					
 					<div class="field">
 						<label>Course</label>
@@ -39,14 +39,23 @@
 					</div>
 
 					<div class="field">
-						<label>To</label>
-						<input name="to" type="date" placeholder="Date To" />
-					</div>
-
-					<div class="field">
 						<label>&nbsp;</label>
-						<button class="ui icon labeled button">
-							<i class="search icon"></i> Search
+						<button class="ui animated blue button">
+							<div class="visible content">
+								Search
+							</div>
+							<div class="hidden content">
+								<i class="search icon"></i>							
+							</div>
+						</button>
+						
+						<button id="addBtn" class="ui animated red button">
+							<div class="visible content">
+								Add New
+							</div>
+							<div class="hidden content">
+								<i class="plus icon"></i>							
+							</div>
 						</button>
 					</div>
 
@@ -83,6 +92,101 @@
 				
 			</tbody>
 		</table>
+		
+		
+		<!-- Modal -->
+		<form action="#" class="ui small modal">
+		
+			<div class="header">Add New Class</div>
+			
+			<div class="content ui form">
+				
+				<div class="three fields">
+					<!-- Teachers -->
+					<div class="field">
+						<label >Teacher</label>
+						<select class="ui dropdown"></select>
+					</div>					
+					<!-- Course -->
+					<div class="field">
+						<label >Course</label>
+						<select class="ui dropdown"></select>
+					</div>					
+					
+					<!-- Start Date -->
+					<div class="field">
+						<label >Start Date</label>
+						<input type="date" />
+					</div>					
+				
+				</div>			
+				
+				<div class="three fields">
+					<!-- Days -->
+					<div class="field">
+						<label >Days</label>
+						<input type="text" placeholder="Enter Days" />
+					</div>					
+					
+					<!-- Times -->
+					<div class="field">
+						<label >Times</label>
+						<input type="text" placeholder="Enter Times" />
+					</div>					
+					
+					<!-- Fees -->
+					<div class="field">
+						<label >Fees</label>
+						<input type="number" placeholder="Enter Fees" />
+					</div>					
+				
+				</div>
+				
+				
+				<!-- Remark -->
+				<div class="field">
+					<label >Remark</label>
+					<textarea rows="3"></textarea>
+				</div>
+			
+			</div>
+			
+			<div class="actions">
+
+				<button type="button" class="ui animated blue cancel button">
+					<div class="visible content">Close</div>
+					<div class="hidden content">
+						<i class="delete icon"></i>
+					</div>
+				</button>
+			
+				<button type="submit" class="ui animated red button">
+					<div class="visible content">Save</div>
+					<div class="hidden content">
+						<i class="save icon"></i>
+					</div>
+				</button>
+			
+			</div>
+		
+		</form>
+		
+		
+		<script>
+			$(() => {
+				
+				$('.ui.modal').modal({
+					autofocus: false,
+					closable: false
+				})
+				
+				$('#addBtn').click(() => $('.ui.modal').modal('show'))
+				
+				$('.ui.dropdown').dropdown()
+				
+			})
+		
+		</script>
 	
 	</div>
 

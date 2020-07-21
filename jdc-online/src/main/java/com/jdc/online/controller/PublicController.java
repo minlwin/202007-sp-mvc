@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jdc.online.config.model.dto.Application;
+import com.jdc.online.model.dto.Application;
 import com.jdc.online.service.ClassesService;
 import com.jdc.online.service.RegistrationService;
 

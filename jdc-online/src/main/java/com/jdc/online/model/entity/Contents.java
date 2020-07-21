@@ -1,9 +1,16 @@
-package com.jdc.online.config.model.entity;
+package com.jdc.online.model.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
 
 import lombok.Data;
 
 @Data
-public class Contents {
+@Embeddable
+public class Contents implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private String title;
 	private String details;

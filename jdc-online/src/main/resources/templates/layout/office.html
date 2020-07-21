@@ -18,19 +18,19 @@
 
 		<div class="ui container">
 
-			<a th:href="@{/office}" class="active item"> <i class="home icon"></i>
+			<a th:href="@{/office}" class="item" th:classappend="${page == 'home'} ? active"> <i class="home icon"></i>
 				JDC Online Office
 			</a>
 
-			<a th:href="@{/office/registrations}" class="item"> <i class="folder open outline icon"></i>
+			<a th:href="@{/office/registrations}" class="item" th:classappend="${page == 'registration'} ? active"> <i class="folder open outline icon"></i>
 				Registrations
 			</a>
 
-			<a th:href="@{/office/classes}" class="item"> <i class="calendar outline icon"></i>
+			<a th:href="@{/office/classes}" class="item" th:classappend="${page == 'classes'} ? active"> <i class="calendar outline icon"></i>
 				Online Classes
 			</a>
 
-			<a th:href="@{/office/members}" class="item"> <i class="users icon"></i>
+			<a th:href="@{/office/members}" class="item" th:classappend="${page == 'members'} ? active"> <i class="users icon"></i>
 				Members
 			</a>
 

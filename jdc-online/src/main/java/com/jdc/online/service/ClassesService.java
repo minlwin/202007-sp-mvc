@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.jdc.online.config.model.entity.Contents;
-import com.jdc.online.config.model.entity.Course;
-import com.jdc.online.config.model.entity.Course.Level;
-import com.jdc.online.config.model.entity.OnlineClass;
+import com.jdc.online.model.entity.Contents;
+import com.jdc.online.model.entity.Course;
+import com.jdc.online.model.entity.OnlineClass;
+import com.jdc.online.model.entity.Course.Level;
 
 @Service
 public class ClassesService {
@@ -54,7 +54,7 @@ public class ClassesService {
 		return result;
 	}
 
-	public List<OnlineClass> search(String course, String teacher, LocalDate from, LocalDate to) {
+	public List<OnlineClass> search(String course, String teacher, LocalDate froms) {
 		return new ArrayList<>();
 	}
 

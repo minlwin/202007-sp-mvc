@@ -1,4 +1,4 @@
-package com.jdc.online.config.model.dto;
+package com.jdc.online.model.dto;
 
 import lombok.Data;
 

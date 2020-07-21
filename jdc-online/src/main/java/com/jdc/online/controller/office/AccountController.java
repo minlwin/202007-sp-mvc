@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.jdc.online.config.model.entity.Account;
+import com.jdc.online.model.entity.Account;
 import com.jdc.online.service.AccountService;
 
 @Controller
@@ -29,5 +30,10 @@ public class AccountController {
 		List<Account> list = service.search(role, name);		
 		model.put("list", list);
 		return "/views/office/account-list";
+	}
+	
+	@ModelAttribute(name = "page")
+	public String page() {
+		return "members";
 	}
 }

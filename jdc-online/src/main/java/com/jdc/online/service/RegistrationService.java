@@ -2,7 +2,7 @@ package com.jdc.online.service;
 
 import org.springframework.stereotype.Service;
 
-import com.jdc.online.config.model.dto.Application;
+import com.jdc.online.model.dto.Application;
 
 @Service
 public class RegistrationService {

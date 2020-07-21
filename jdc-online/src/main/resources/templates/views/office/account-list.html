@@ -40,8 +40,22 @@
 					
 					<div class="field">
 						<label>&nbsp;</label>
-						<button class="ui icon labeled button">
-							<i class="search icon"></i> Search
+						<button class="ui animated blue button">
+							<div class="visible content">
+								Search
+							</div>
+							<div class="hidden content">
+								<i class="search icon"></i>							
+							</div>
+						</button>
+						
+						<button type="button" id="addBtn" class="ui animated red button">
+							<div class="visible content">
+								Add New
+							</div>
+							<div class="hidden content">
+								<i class="plus icon"></i>							
+							</div>
 						</button>
 					</div>
 				
@@ -75,8 +89,75 @@
 			</tbody>
 		</table>
 		
+		
+		<!-- Edit Dialog -->
+		<form class="ui tiny modal">
+		
+			<div class="header">Add New Member</div>
+			
+			<div class="ui form content">
+				
+				<!-- Role -->
+				<div class="field">
+					<label>Role</label>
+					<select class="ui dropdown">
+						<option value="Office">Office</option>
+						<option value="Teacher">Teacher</option>
+					</select>
+				</div>
+				
+				<!-- Name -->
+				<div class="field">
+					<label>Name</label>
+					<input type="text" placeholder="Enter Name" />
+				</div>
+				
+				<!-- Phone -->
+				<div class="field">
+					<label>Phone</label>
+					<input type="tel" placeholder="Enter Phone" />
+				</div>
+				
+				<!-- Email -->
+				<div class="field">
+					<label>Email</label>
+					<input type="email" placeholder="Enter Email" />
+				</div>
+			
+			</div>
+			
+			<div class="actions">
+
+				<button type="button" class="ui animated blue cancel button">
+					<div class="visible content">Close</div>
+					<div class="hidden content">
+						<i class="delete icon"></i>
+					</div>
+				</button>
+			
+				<button type="submit" class="ui animated red button">
+					<div class="visible content">Save</div>
+					<div class="hidden content">
+						<i class="save icon"></i>
+					</div>
+				</button>
+				
+			</div>
+		
+		</form>
+		
 		<script>
-			$(() => $('.ui.dropdown').dropdown())
+			$(() => {
+				
+				$('.ui.modal').modal({
+					autofocus: false,
+					closable: false
+				})
+				
+				$('#addBtn').click(() => $('.ui.modal').modal('show'))
+				
+				$('.ui.dropdown').dropdown()
+			})
 		</script>
 	
 	</div>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.jdc.online.config.model.entity.Account;
+import com.jdc.online.model.entity.Account;
 
 @Service
 public class AccountService {
