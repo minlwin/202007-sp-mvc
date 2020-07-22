@@ -46,18 +46,18 @@
 	</div>
 	
 	
-	<form id="loginModal" method="post" th:action="@{/login}" class="ui tiny modal">
+	<form id="loginModal" method="post" th:action="@{/login}" th:object="${login}" class="ui tiny modal">
 		<div class="ui header"><i class="sign in icon"></i> JDC Login</div>
 		
 		<div class="content">
 			
-			<div class="ui form">
+			<div  class="ui form">
 				
 				<div class="field">
 					<label>Login Id</label>
 					<div class="ui left icon labeled input">
 						<i class="user icon"></i>
-						<input type="text" placeholder="Enter Login Id" />
+						<input th:field="*{loginId}" name="loginId" type="text" placeholder="Enter Login Id" />
 					</div>
 				</div>	
 				
@@ -65,7 +65,7 @@
 					<label>Password</label>
 					<div class="ui left icon labeled input">
 						<i class="key icon"></i>
-						<input type="password" placeholder="Enter Password" />
+						<input th:field="*{password}" name="password" type="password" placeholder="Enter Password" />
 					</div>
 				</div>		
 			

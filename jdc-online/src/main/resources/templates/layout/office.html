@@ -35,8 +35,7 @@
 			</a>
 
 			<div class="right menu">
-
-				<a class="item"> <i class="sign out icon"></i> Sign Out</a>
+				<a class="item" id="logoutMenu"> <i class="sign out icon"></i> Sign Out</a>
 			</div>
 		</div>
 
@@ -56,7 +55,12 @@
 	
 	</div>
 	
+	<form id="logoutForm" th:action="@{/logout}" method="post"></form>
 	
-
+	<script>
+		$(() => {
+			$('#logoutMenu').click(() => $('#logoutForm').submit())
+		})
+	</script>
 </body>
 </html>

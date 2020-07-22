@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jdc.online.model.dto.Application;
+import com.jdc.online.model.dto.LoginDTO;
 import com.jdc.online.service.ClassesService;
 import com.jdc.online.service.RegistrationService;
 
@@ -70,6 +71,11 @@ public class PublicController {
 		model.put("registration", registration);
 		
 		return "/views/public/apply-class";
+	}
+	
+	@ModelAttribute("login")
+	public LoginDTO login() {
+		return new LoginDTO();
 	}
 
 }
