@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{/layout/office}">
+	layout:decorate="~{/layout/public}">
 <head>
 <meta charset="UTF-8">
 <title>Members</title>
@@ -91,7 +91,7 @@
 		
 		
 		<!-- Edit Dialog -->
-		<form class="ui tiny modal">
+		<form class="ui tiny modal" method="post" th:object="${account}">
 		
 			<div class="header">Add New Member</div>
 			
@@ -100,7 +100,7 @@
 				<!-- Role -->
 				<div class="field">
 					<label>Role</label>
-					<select class="ui dropdown">
+					<select th:field="*{role}" class="ui dropdown">
 						<option value="Office">Office</option>
 						<option value="Teacher">Teacher</option>
 					</select>
@@ -109,19 +109,19 @@
 				<!-- Name -->
 				<div class="field">
 					<label>Name</label>
-					<input type="text" placeholder="Enter Name" />
+					<input th:field="*{name}" type="text" placeholder="Enter Name" />
 				</div>
 				
 				<!-- Phone -->
 				<div class="field">
 					<label>Phone</label>
-					<input type="tel" placeholder="Enter Phone" />
+					<input th:field="*{phone}" type="tel" placeholder="Enter Phone" />
 				</div>
 				
 				<!-- Email -->
 				<div class="field">
 					<label>Email</label>
-					<input type="email" placeholder="Enter Email" />
+					<input th:field="*{email}" type="email" placeholder="Enter Email" />
 				</div>
 			
 			</div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
 <meta charset="UTF-8">
 <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">JDC Online</title>
@@ -18,14 +19,57 @@
 
 		<div class="ui container">
 
-			<a th:href="@{/public}" class="active item"> <i class="home icon"></i>
+			<a sec:authorize="isAnonymous()" th:href="@{/public}" class="active item"> <i class="home icon"></i>
 				JDC Online
 			</a>
+			
+			<!-- Office Menu -->
+			<div class="left menu"  sec:authorize="hasAuthority('Office')">
+
+				<a th:href="@{/office}" class="item" th:classappend="${page == 'home'} ? active"> <i class="home icon"></i>
+					JDC Online Office
+				</a>
+	
+				<a th:href="@{/office/registrations}" class="item" th:classappend="${page == 'registration'} ? active"> <i class="folder open outline icon"></i>
+					Registrations
+				</a>
+	
+				<a th:href="@{/office/classes}" class="item" th:classappend="${page == 'classes'} ? active"> <i class="calendar outline icon"></i>
+					Online Classes
+				</a>
+	
+				<a th:href="@{/office/members}" class="item" th:classappend="${page == 'members'} ? active"> <i class="users icon"></i>
+					Members
+				</a>
+			
+			</div>
+			
+			
+			<!-- Teacher Menu -->
+			<div class="left menu" sec:authorize="hasAuthority('Teacher')">
+				<a th:href="@{/teacher}" class="item" th:classappend="${page == 'home'} ? active"> <i class="home icon"></i>
+					JDC Online Teacher
+				</a>
+	
+				<a th:href="@{/teacher/courses}" class="item" th:classappend="${page == 'courses'} ? active"> <i class="book icon"></i>
+					Courses
+				</a>
+	
+				<a th:href="@{/teacher/classes}" class="item" th:classappend="${page == 'classes'} ? active"> <i class="calendar outline icon"></i>
+					Online Classes
+				</a>
+			
+			</div>
+			
+			
+			<!-- Student Menu -->
 
 			<div class="right menu">
 
-				<a class="item" onclick="showLoginView()"> <i class="sign in icon"></i> Sign In
-				</a>
+				<a sec:authorize="isAnonymous()" class="item" onclick="showLoginView()"> <i class="sign in icon"></i> Sign In</a>
+				
+				<a sec:authorize="isAuthenticated()" class="item" id="logoutMenu"> <i class="sign out icon"></i> Sign Out</a>
+				
 			</div>
 		</div>
 
@@ -46,7 +90,7 @@
 	</div>
 	
 	
-	<form id="loginModal" method="post" th:action="@{/login}" th:object="${login}" class="ui tiny modal">
+	<form sec:authorize="isAnonymous()" id="loginModal" method="post" th:action="@{/login}" th:object="${login}" class="ui tiny modal">
 		<div class="ui header"><i class="sign in icon"></i> JDC Login</div>
 		
 		<div class="content">
@@ -80,8 +124,14 @@
 		</div>
 	</form>
 	
+	<form sec:authorize="isAuthenticated()" th:action="@{/logout}" id="logoutForm" method="post"></form>
+	
 	
 	<script>
+	
+		$(() => {
+			$('#logoutMenu').click(() => $('#logoutForm').submit())
+		})
 	
 		function showLoginView() {
 			$('#loginModal').modal('show')

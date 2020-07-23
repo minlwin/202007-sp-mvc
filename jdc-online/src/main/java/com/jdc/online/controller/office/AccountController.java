@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,7 +30,17 @@ public class AccountController {
 		
 		List<Account> list = service.search(role, name);		
 		model.put("list", list);
+		model.put("account", new Account());
+		
 		return "/views/office/account-list";
+	}
+	
+	@PostMapping
+	public String create(@ModelAttribute(name = "account") Account account) {
+		
+		service.save(account);
+		
+		return "redirect:/office/members";
 	}
 	
 	@ModelAttribute(name = "page")
