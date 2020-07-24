@@ -77,12 +77,12 @@
 			</thead>
 			
 			<tbody>
-				<tr>
-					<td>Office</td>
-					<td>Thidar</td>
-					<td>098767888</td>
-					<td>thidar@gmail.com</td>
-					<td>Active</td>
+				<tr th:each="acc : ${list}">
+					<td th:text="${acc.role}">Office</td>
+					<td th:text="${acc.name}">Thidar</td>
+					<td th:text="${acc.phone}">098767888</td>
+					<td th:text="${acc.email}">thidar@gmail.com</td>
+					<td th:text="${acc.deleted ? 'Deleted' : 'Active'}"></td>
 					<td>
 					</td>
 				</tr>
@@ -91,7 +91,7 @@
 		
 		
 		<!-- Edit Dialog -->
-		<form class="ui tiny modal" method="post" th:object="${account}">
+		<form class="ui tiny modal" th:action="@{/office/members}" method="post" th:object="${account}">
 		
 			<div class="header">Add New Member</div>
 			

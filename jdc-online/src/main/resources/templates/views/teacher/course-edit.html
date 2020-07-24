@@ -14,7 +14,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 	
 	<div layout:fragment="content">
 	
-		<div class="ui raised padded segment">
+		<form th:action="@{/teacher/courses}" method="post" th:object="${data}" class="ui raised padded segment">
 		
 			<div class="ui grid">
 			
@@ -24,14 +24,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 						<img th:src="@{/resources/images/course.png}">
 					</div>
 					
-					<button class="ui fluid blue button mb-12">
-						<i class="upload icon"></i> Upload Photo
-					</button>
-				
-					<button class="ui fluid blue button mb-12">
-						<i class="plus icon"></i> Add Content
-					</button>
-
 					<button class="ui fluid blue button">
 						<i class="save icon"></i> Save Course
 					</button>
@@ -40,18 +32,18 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 				
 				<div class="twelve wide column">
 				
-					<form class="ui form">
+					<div class="ui form">
 					
 						<div class="ui header">Course Informations</div>
 					
 						<div class="three fields">
 							<div class="field">
 								<label>Code</label>
-								<input type="text" />
+								<input th:field="*{code}" type="text" />
 							</div>
 							<div class="field">
 								<label>Name</label>
-								<input type="text" />
+								<input th:field="*{name}" type="text" />
 							</div>
 						</div>
 						
@@ -59,38 +51,42 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 						
 							<div class="field">
 								<label>Level</label>
-								<input type="text" />
+								<select class="ui dropdown">
+									<option value="Basic">Basic</option>
+									<option value="Intermediate">Intermediate</option>
+									<option value="Advance">Advance</option>
+								</select>
 							</div>
 						
 							<div class="field">
 								<label>Hours</label>
-								<input type="number" />
+								<input th:field="*{duration}" type="number" />
 							</div>
 
 							<div class="field">
 								<label>Fees</label>
-								<input type="number" />
+								<input th:field="*{fees}" type="number" />
 							</div>
 						</div>
 					
 						<div class="field">
 							<label>Requirement</label>
-							<input type="text" />
+							<input th:field="*{requirements}" type="text" />
 						</div>
 						
 						<div class="field">
 							<label>Description</label>
-							<textarea rows="3"></textarea>
+							<textarea rows="3" th:field="*{description}"></textarea>
 						</div>
 						
 						<div class="ui header">Course Contents</div>
 					
-					</form>
+					</div>
 				
 				</div>
 			</div>
 		
-		</div>
+		</form>
 	
 	</div>
 

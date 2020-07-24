@@ -3,6 +3,7 @@ package com.jdc.online.controller.office;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,9 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService service;
+	
+	@Autowired
+	private PasswordEncoder encode;
 
 	@GetMapping
 	public String search(
@@ -27,6 +31,7 @@ public class AccountController {
 			@RequestParam(required = false) String name,
 			ModelMap model
 	) {
+		
 		
 		List<Account> list = service.search(role, name);		
 		model.put("list", list);
@@ -37,6 +42,8 @@ public class AccountController {
 	
 	@PostMapping
 	public String create(@ModelAttribute(name = "account") Account account) {
+		
+		account.setPassword(encode.encode("pass"));
 		
 		service.save(account);
 		
