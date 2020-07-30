@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,17 +28,29 @@ public class AccountController {
 
 	@GetMapping
 	public String search(
+			@RequestParam(required = false) String status, 
 			@RequestParam(required = false) String role, 
 			@RequestParam(required = false) String name,
 			ModelMap model
 	) {
 		
 		
-		List<Account> list = service.search(role, name);		
+		List<Account> list = service.search(status, role, name);	
+		
+		model.put("status", status);
+		model.put("role", role);
+		model.put("name", name);
 		model.put("list", list);
-		model.put("account", new Account());
 		
 		return "/views/office/account-list";
+	}
+	
+	@GetMapping("{id}/activate")
+	public String changeActiveState(@PathVariable int id, ModelMap model) {
+		
+		service.changeState(id);
+		
+		return "redirect:/office/members";
 	}
 	
 	@PostMapping
@@ -49,6 +62,13 @@ public class AccountController {
 		
 		return "redirect:/office/members";
 	}
+	
+	
+	@ModelAttribute(name = "account")
+	public Account account() {
+		return new Account();
+	}
+
 	
 	@ModelAttribute(name = "page")
 	public String page() {

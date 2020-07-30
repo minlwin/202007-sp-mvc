@@ -21,21 +21,31 @@
 				<i class="search icon"></i>
 				Search
 			</div>
-			<form class="ui form">
+			<form th:action="@{/office/members}" class="ui form">
 				
-				<div class="three fields">
+				<div class="fields">
+					<div class="field">
+						<label>Status</label>
+						<select name="status" class="ui dropdown">
+							<option value="-1">All Status</option>
+							<option value="0" th:selected="${status == '0'}" >Active</option>
+							<option value="1" th:selected="${status == '1'}">Deleted</option>
+						</select>
+					</div>
+
 					<div class="field">
 						<label>Role</label>
 						<select name="role" class="ui dropdown">
-							<option>Office</option>
-							<option>Teacher</option>
-							<option>Student</option>
+							<option value="0">All Roles</option>
+							<option th:selected="${role == 'Office'}" >Office</option>
+							<option th:selected="${role == 'Teacher'}">Teacher</option>
+							<option th:selected="${role == 'Student'}">Student</option>
 						</select>
 					</div>
 					
 					<div class="field">
 						<label>Name</label>
-						<input name="name" type="text" placeholder="Search Name" />
+						<input name="name" type="text" placeholder="Search Name" th:value="${name}" />
 					</div>
 					
 					<div class="field">
@@ -82,7 +92,9 @@
 					<td th:text="${acc.name}">Thidar</td>
 					<td th:text="${acc.phone}">098767888</td>
 					<td th:text="${acc.email}">thidar@gmail.com</td>
-					<td th:text="${acc.deleted ? 'Deleted' : 'Active'}"></td>
+					<td>
+						<a th:href="@{/office/members/{id}/activate(id=${acc.id})}" th:text="${acc.deleted ? 'Deleted' : 'Active'}">Active</a>
+					</td>
 					<td>
 					</td>
 				</tr>

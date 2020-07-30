@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jdc.online.model.entity.Contents;
 import com.jdc.online.model.entity.Course;
 import com.jdc.online.service.CourseService;
 
@@ -41,10 +43,26 @@ public class CourseController {
 		return "/views/teacher/course-edit";
 	}
 	
+	
+	@GetMapping("{id}")
+	public String courseDetails(@PathVariable int id, ModelMap model) {
+		Course c = service.findById(id);
+		model.put("course", c);
+		model.put("content", new Contents());
+		return "/views/teacher/course-details";
+	}
+
+	
 	@PostMapping
 	public String create(@ModelAttribute("data") Course course) {
-		
-		return null;
+		course = service.create(course);
+		return "redirect:/teacher/courses/" + course.getId();
+	}
+	
+	@PostMapping("{id}/contents")
+	public String createContent(@PathVariable int id, @ModelAttribute Contents contents) {
+		service.addContent(id, contents);
+		return "redirect:/teacher/courses/" + id;
 	}
 	
 	@ModelAttribute(name = "page")

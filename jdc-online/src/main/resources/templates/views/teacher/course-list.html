@@ -19,8 +19,8 @@
 				<i class="search icon"></i> Search
 			</div>
 			
-			<div class="ui form">
-				<div class="three fields">
+			<form th:action="@{/teacher/courses}" class="ui form">
+				<div class="fields">
 					
 					<div class="field">
 						<label>Code</label>
@@ -43,7 +43,7 @@
 					</div>
 
 				</div>
-			</div>
+			</form>
 		</div>	
 		
 		
@@ -64,12 +64,12 @@
 			
 			<tbody>
 				<tr th:each="c : ${list}">
-					<td >JSE</td>
-					<td>Java SE</td>
-					<td>Basic</td>
-					<td>60 Hours</td>
-					<td>80,000 MMK</td>
-					<td>Basic Computer Usage</td>
+					<td th:text="${c.code}">JSE</td>
+					<td th:text="${c.name}">Java SE</td>
+					<td th:text="${c.level}">Basic</td>
+					<td th:text="${c.duration + ' Hours'}">60 Hours</td>
+					<td th:text="${c.fees + ' MMK'}">80,000 MMK</td>
+					<td th:text="${c.requirements}">Basic Computer Usage</td>
 					<td></td>
 				</tr>
 				

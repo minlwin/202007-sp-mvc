@@ -6,8 +6,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.jdc.online.model.entity.Contents;
 import com.jdc.online.model.entity.Course;
 import com.jdc.online.model.repo.CourseRepo;
 
@@ -34,6 +36,19 @@ public class CourseService {
 		}
 		
 		return repo.search(sb.toString(), params);
+	}
+
+	public Course findById(int id) {
+		return repo.findById(id).orElseThrow();
+	}
+
+	public Course create(Course course) {
+		return repo.save(course);
+	}
+
+	@Transactional
+	public void addContent(int id, Contents contents) {
+		repo.findById(id).ifPresent(c -> c.getContents().add(contents));
 	}
 
 }

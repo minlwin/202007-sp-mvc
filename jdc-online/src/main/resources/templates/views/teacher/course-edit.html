@@ -24,10 +24,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 						<img th:src="@{/resources/images/course.png}">
 					</div>
 					
-					<button class="ui fluid blue button">
-						<i class="save icon"></i> Save Course
-					</button>
-
 				</div>
 				
 				<div class="twelve wide column">
@@ -51,7 +47,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 						
 							<div class="field">
 								<label>Level</label>
-								<select class="ui dropdown">
+								<select th:field="*{level}" class="ui dropdown">
 									<option value="Basic">Basic</option>
 									<option value="Intermediate">Intermediate</option>
 									<option value="Advance">Advance</option>
@@ -79,8 +75,12 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 							<textarea rows="3" th:field="*{description}"></textarea>
 						</div>
 						
-						<div class="ui header">Course Contents</div>
-					
+						<div class="field">
+						
+							<button class="ui blue button">
+								<i class="save icon"></i> Save Course
+							</button>
+						</div>				
 					</div>
 				
 				</div>
