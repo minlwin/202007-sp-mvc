@@ -33,33 +33,21 @@ public class AccountController {
 			@RequestParam(required = false) String name,
 			ModelMap model
 	) {
-		
-		
 		List<Account> list = service.search(status, role, name);	
-		
-		model.put("status", status);
-		model.put("role", role);
-		model.put("name", name);
 		model.put("list", list);
-		
 		return "/views/office/account-list";
 	}
 	
 	@GetMapping("{id}/activate")
 	public String changeActiveState(@PathVariable int id, ModelMap model) {
-		
 		service.changeState(id);
-		
 		return "redirect:/office/members";
 	}
 	
 	@PostMapping
 	public String create(@ModelAttribute(name = "account") Account account) {
-		
 		account.setPassword(encode.encode("pass"));
-		
 		service.save(account);
-		
 		return "redirect:/office/members";
 	}
 	
