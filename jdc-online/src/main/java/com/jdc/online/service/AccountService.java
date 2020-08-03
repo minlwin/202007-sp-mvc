@@ -64,4 +64,10 @@ public class AccountService {
 		});
 	}
 
+	public Account findByLoiginId(String loginUser) {
+		return repo.findOneByEmail(loginUser).orElseThrow();
+	}
+	
+	
+
 }

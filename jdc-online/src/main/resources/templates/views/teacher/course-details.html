@@ -1,12 +1,70 @@
-<!DOCTYPE html >
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/public}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title th:text="${course.code}">Courses</title>
 </head>
 <body>
 
-	<div ></div>
+	<div layout:fragment="title">
+		Course Details
+	</div>
+
+	<div layout:fragment="content">
+		
+		
+		<div class="ui padded segment">
+			<div class="ui grid">
+			
+				<div class="four wide column">
+
+					<div class="ui fluid image mb-12">
+						<img th:src="@{/resources/images/course.png}">
+					</div>
+				
+				</div>
+				
+				<div class="twelve wide column">
+				
+					<table class="ui table">
+						<tr>
+							<td>Course Code</td>
+							<td th:text="${course.code}"></td>
+						</tr>
+						<tr>
+							<td>Course Name</td>
+							<td th:text="${course.name}"></td>
+						</tr>
+						<tr>
+							<td>Level</td>
+							<td th:text="${course.level}"></td>
+						</tr>
+						<tr>
+							<td>Durations</td>
+							<td th:text="${course.duration + ' Houts'}"></td>
+						</tr>
+						<tr>
+							<td>Requirements</td>
+							<td th:text="${course.requirements}"></td>
+						</tr>
+						<tr>
+							<td>Fees</td>
+							<td th:text="${course.fees + ' MMK'}"></td>
+						</tr>
+						<tr>
+							<td>Description</td>
+							<td th:text="${course.description}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		
+		</div>
+	
+		
+	</div>
 
 </body>
 </html>

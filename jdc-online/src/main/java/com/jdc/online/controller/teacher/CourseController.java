@@ -39,7 +39,6 @@ public class CourseController {
 	
 	@GetMapping("edit")
 	public String edit(@RequestParam(required = false) Integer id, Model model) {
-		model.addAttribute("data", new Course());
 		return "/views/teacher/course-edit";
 	}
 	
@@ -68,6 +67,11 @@ public class CourseController {
 	@ModelAttribute(name = "page")
 	public String page() {
 		return "courses";
+	}
+	
+	@ModelAttribute(name = "data")
+	public Course course(@RequestParam(required = false) Integer id) {
+		return (null == id || id  == 0) ? new Course() : service.findById(id);
 	}
 
 }

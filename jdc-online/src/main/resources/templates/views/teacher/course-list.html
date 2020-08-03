@@ -64,13 +64,19 @@
 			
 			<tbody>
 				<tr th:each="c : ${list}">
-					<td th:text="${c.code}">JSE</td>
+					<td>
+						<a th:href="@{/teacher/courses/{id}(id=${c.id})}" th:text="${c.code}"></a>
+					</td>
 					<td th:text="${c.name}">Java SE</td>
 					<td th:text="${c.level}">Basic</td>
 					<td th:text="${c.duration + ' Hours'}">60 Hours</td>
 					<td th:text="${c.fees + ' MMK'}">80,000 MMK</td>
 					<td th:text="${c.requirements}">Basic Computer Usage</td>
-					<td></td>
+					<td>
+						<a th:href="@{/teacher/courses/edit(id=${c.id})}">
+							<i class="pencil icon"></i>
+						</a>
+					</td>
 				</tr>
 				
 			</tbody>

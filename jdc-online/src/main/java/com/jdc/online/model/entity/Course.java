@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -35,6 +36,9 @@ public class Course implements Serializable{
 	private int fees;
 	private String requirements;
 	private String description;
+	
+	@ManyToOne
+	private Account teacher;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<Contents> contents = new ArrayList<>();

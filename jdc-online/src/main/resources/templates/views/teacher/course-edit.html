@@ -8,14 +8,16 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 <body>
 
 	<div layout:fragment="title">
-		Add New Course
+		<span th:text="${data.id == 0 ? 'Add New Course' : 'Edit Course'}"></span>
 	</div>
 	
 	
 	<div layout:fragment="content">
 	
 		<form th:action="@{/teacher/courses}" method="post" th:object="${data}" class="ui raised padded segment">
-		
+			
+			<input type="hidden" th:field="*{id}"  />
+			
 			<div class="ui grid">
 			
 				<div class="four wide column">
@@ -35,7 +37,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/lay
 						<div class="three fields">
 							<div class="field">
 								<label>Code</label>
-								<input th:field="*{code}" type="text" />
+								<input th:field="*{code}" readonly="readonly" type="text" />
 							</div>
 							<div class="field">
 								<label>Name</label>
