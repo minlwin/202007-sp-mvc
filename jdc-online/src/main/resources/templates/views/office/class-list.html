@@ -95,7 +95,7 @@
 		
 		
 		<!-- Modal -->
-		<form action="#" class="ui small modal">
+		<form class="ui small modal">
 		
 			<div class="header">Add New Class</div>
 			
@@ -105,12 +105,17 @@
 					<!-- Teachers -->
 					<div class="field">
 						<label >Teacher</label>
-						<select class="ui dropdown"></select>
+						<select name="teacher" class="ui dropdown">
+							<option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.name}"></option>
+						</select>
 					</div>					
 					<!-- Course -->
 					<div class="field">
 						<label >Course</label>
-						<select class="ui dropdown"></select>
+						<input name="course" placeholder="Enter Course Name" list="courses">
+						<datalist id="courses">
+							<option th:each="c : ${courses}" th:value="${c.code}" th:text="${c.name}"></option>
+						</datalist>
 					</div>					
 					
 					<!-- Start Date -->

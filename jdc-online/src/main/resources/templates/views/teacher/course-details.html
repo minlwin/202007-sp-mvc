@@ -28,41 +28,134 @@
 				
 				<div class="twelve wide column">
 				
-					<table class="ui table">
-						<tr>
-							<td>Course Code</td>
-							<td th:text="${course.code}"></td>
-						</tr>
-						<tr>
-							<td>Course Name</td>
-							<td th:text="${course.name}"></td>
-						</tr>
-						<tr>
-							<td>Level</td>
-							<td th:text="${course.level}"></td>
-						</tr>
-						<tr>
-							<td>Durations</td>
-							<td th:text="${course.duration + ' Houts'}"></td>
-						</tr>
-						<tr>
-							<td>Requirements</td>
-							<td th:text="${course.requirements}"></td>
-						</tr>
-						<tr>
-							<td>Fees</td>
-							<td th:text="${course.fees + ' MMK'}"></td>
-						</tr>
-						<tr>
-							<td>Description</td>
-							<td th:text="${course.description}"></td>
-						</tr>
-					</table>
+					<h2 th:text="${course.name}"></h2>
+					
+					<div class="ui divider"></div>
+					
+					<div class="ui horizontal list">
+					
+						<div class="item">
+							
+							<span class="ui avator image">
+								<i class="large graduation cap icon"></i>
+							</span>
+							
+							<div class="content">
+							
+								<div class="header">Code</div>
+								<span th:text="${course.code}"></span>
+							</div>
+							
+						</div>
+
+						<div class="item">
+							
+							<span class="ui avator image">
+								<i class="large certificate icon"></i>
+							</span>
+							
+							<div class="content">
+							
+								<div class="header">Level</div>
+								<span th:text="${course.level}"></span>
+							</div>
+							
+						</div>
+
+						<div class="item">
+							
+							<span class="ui avator image">
+								<i class="large hourglass start icon"></i>
+							</span>
+							
+							<div class="content">
+							
+								<div class="header">Duration</div>
+								<span th:text="${course.duration}" ></span> Hours
+							</div>
+							
+						</div>
+
+						<div class="item">
+							
+							<span class="ui avator image">
+								<i class="large usd icon"></i>
+							</span>
+							
+							<div class="content">
+							
+								<div class="header">Fees</div>
+								<span th:text="${course.fees}"></span> MMK
+							</div>
+							
+						</div>
+
+						<div class="item">
+							
+							<span class="ui avator image">
+								<i class="large usd icon"></i>
+							</span>
+							
+							<div class="content">
+							
+								<div class="header">Requirements</div>
+								<span th:text="${course.requirements}"></span>
+							</div>
+							
+						</div>
+
+					</div>
+					
+					<div class="ui divider"></div>
+					
+					<h4>Description</h4>
+					
+					<p th:text="${course.description}"></p>
 				</div>
 			</div>
 		
 		</div>
-	
+		
+		<h3>Course Contents <a id="addBtn" style="float: right;" class="ui button"><i class="plus icon"></i> Add</a></h3>
+		
+		<div class="ui hidden divider"></div>
+		
+		<div class="ui segment" th:each="content : ${course.contents}">
+			
+			<div class="ui header" th:text="${content.title}">Title</div>
+			
+			<p th:text="${content.details}">Contents</p>
+		</div>	
+		
+		<form id="addForm" th:action="@{/teacher/courses/{id}/contents(id=${course.id})}" method="post" th:object="${content}" class="ui modal form">
+		
+			<div class="header">Add Content</div>
+			
+			<div class="content">
+			
+				<div class="field">
+					<label>Title</label>
+					<input type="text" placeholder="Enter Title" th:field="*{title}" required="required" />
+				</div>
+				
+				<div class="field">
+					<label>Content</label>
+					<textarea rows="4" required="required" th:field="*{details}"></textarea>				
+				</div>
+			</div>
+			
+			<div class="actions">
+			
+				<button type="button" class="ui cancel blue button">Close</button>
+				<button class="ui red button">Save</button>
+			</div>
+		
+		</form>
+		
+		<script>
+		
+			$('#addBtn').click(() => $('#addForm').modal({closable : false}).modal('show'));
+		</script>
 		
 	</div>
 

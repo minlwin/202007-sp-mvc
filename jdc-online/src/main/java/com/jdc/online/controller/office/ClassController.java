@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jdc.online.model.entity.Account;
+import com.jdc.online.model.entity.Account.Role;
+import com.jdc.online.model.entity.Course;
 import com.jdc.online.model.entity.OnlineClass;
+import com.jdc.online.service.AccountService;
 import com.jdc.online.service.ClassesService;
+import com.jdc.online.service.CourseService;
 
 @Controller("OfficeClasses")
 @RequestMapping("office/classes")
@@ -22,6 +27,12 @@ public class ClassController {
 	
 	@Autowired
 	private ClassesService service;
+	
+	@Autowired
+	private AccountService accounts;
+	
+	@Autowired
+	private CourseService courses;
 
 	@GetMapping
 	public String search(
@@ -34,6 +45,15 @@ public class ClassController {
 		
 		List<OnlineClass> list = service.search(course, teacher, from);
 		model.put("list", list);
+		
+		List<Account> teachers = accounts.search("0", Role.Teacher.name(), null);
+		model.put("teachers", teachers);
+		
+		if(!teachers.isEmpty()) {
+			
+			List<Course> courseList = courses.search(teachers.get(0).getId());
+			model.put("courses", courseList);
+		}
 		
 		return "/views/office/class-list";
 	}

@@ -32,6 +32,11 @@ public class CourseService {
 	
 	@Autowired
 	private CourseCodeGenerater codeGen;
+	
+	
+	public List<Course> search(int teacherId) {
+		return repo.findByTeacherId(teacherId);
+	}	
 
 	public List<Course> search(String code, String name) {
 		
