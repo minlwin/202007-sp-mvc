@@ -80,12 +80,12 @@
 			</thead>
 			
 			<tbody>
-				<tr>
-					<td>Java SE</td>
-					<td>2020/08/01</td>
-					<td>Min Lwin</td>
-					<td>Sat - Sun</td>
-					<td>13:00 - 18:00</td>
+				<tr th:each="c : ${list}">
+					<td th:text="${c.course.name}">Java SE</td>
+					<td th:text="${c.startDate}">2020/08/01</td>
+					<td th:text="${c.teacher.name}">Min Lwin</td>
+					<td th:text="${c.days}">Sat - Sun</td>
+					<td th:text="${c.times}">13:00 - 18:00</td>
 					<td>Available</td>
 					<td></td>
 				</tr>
@@ -95,54 +95,63 @@
 		
 		
 		<!-- Modal -->
-		<form class="ui small modal">
+		<form th:action="@{/office/classes}" method="post" th:object="${dto}" class="ui small modal">
 		
 			<div class="header">Add New Class</div>
 			
 			<div class="content ui form">
 				
-				<div class="three fields">
+				<div class="two fields">
 					<!-- Teachers -->
 					<div class="field">
 						<label >Teacher</label>
-						<select name="teacher" class="ui dropdown">
+						<select id="teacherSelect" name="teacher" class="ui dropdown">
 							<option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.name}"></option>
 						</select>
 					</div>					
 					<!-- Course -->
 					<div class="field">
 						<label >Course</label>
-						<input name="course" placeholder="Enter Course Name" list="courses">
+						<input  th:field="*{code}" id="courseInput" name="course" placeholder="Enter Course Name" list="courses">
 						<datalist id="courses">
 							<option th:each="c : ${courses}" th:value="${c.code}" th:text="${c.name}"></option>
 						</datalist>
 					</div>					
 					
+				
+				</div>	
+				
+				<div class="two fields">
 					<!-- Start Date -->
 					<div class="field">
 						<label >Start Date</label>
-						<input type="date" />
+						<input th:field="*{startDate}" type="date" />
 					</div>					
-				
-				</div>			
+					
+					
+					<div class="field">
+						<label>Duration</label>
+						<input id="durationInput" type="number" th:field="*{duration}" />
+					</div>				
+				</div>		
 				
 				<div class="three fields">
 					<!-- Days -->
 					<div class="field">
 						<label >Days</label>
-						<input type="text" placeholder="Enter Days" />
+						<input type="text" th:field="*{days}" placeholder="Enter Days" />
 					</div>					
 					
 					<!-- Times -->
 					<div class="field">
 						<label >Times</label>
-						<input type="text" placeholder="Enter Times" />
+						<input type="text" th:field="*{times}" placeholder="Enter Times" />
 					</div>					
 					
 					<!-- Fees -->
 					<div class="field">
 						<label >Fees</label>
-						<input type="number" placeholder="Enter Fees" />
+						<input id="feesInput" th:field="*{fees}" type="number" placeholder="Enter Fees" />
 					</div>					
 				
 				</div>
@@ -151,7 +160,7 @@
 				<!-- Remark -->
 				<div class="field">
 					<label >Remark</label>
-					<textarea rows="3"></textarea>
+					<textarea id="remarkInput" th:field="*{requirements}" rows="3"></textarea>
 				</div>
 			
 			</div>
@@ -189,6 +198,30 @@
 				
 				$('.ui.dropdown').dropdown()
 				
+				$('#courseInput').change(() => {
+					let code = $('#courseInput').val()
+					let url = `/public/courses/${code}`
+					$.get(url, data => {
+						$('#feesInput').val(data.fees)
+						$('#durationInput').val(data.duration)
+						$('#remarkInput').val(data.requirements)
+					})
+				})
+				
+				
+				$('#teacherSelect').change(() => {
+					let teacherId = $('#teacherSelect').val()
+					let url = `/public/courses/teacher/${teacherId}`
+					
+					$.get(url, list => {
+						$('#courseInput').val('')
+						$('#courses').empty()
+						
+						list.forEach(data => {
+							$("<option>").text(data.name).val(data.code).appendTo($('#courses'))
+						})
+					})
+				})
 			})
 		
 		</script>

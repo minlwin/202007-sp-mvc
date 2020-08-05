@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jdc.online.model.dto.ClassDTO;
 import com.jdc.online.model.entity.Account;
 import com.jdc.online.model.entity.Account.Role;
 import com.jdc.online.model.entity.Course;
@@ -55,8 +57,17 @@ public class ClassController {
 			model.put("courses", courseList);
 		}
 		
+		model.put("dto", new ClassDTO());
+		
 		return "/views/office/class-list";
 	}
+	
+	@PostMapping
+	public String save(@ModelAttribute ClassDTO dto) {
+		service.save(dto);
+		return "redirect:/office/classes";
+	}
+	
 	
 	@ModelAttribute(name = "page")
 	public String page() {

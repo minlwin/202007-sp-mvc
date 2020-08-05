@@ -86,4 +86,12 @@ public class CourseService {
 		repo.findById(id).ifPresent(c -> c.getContents().add(contents));
 	}
 
+	public Course findByCode(String code) {
+		return repo.findByCode(code);
+	}
+
+	public List<Course> findByTeacherId(int id) {
+		return repo.findByTeacherId(id);
+	}
+
 }
