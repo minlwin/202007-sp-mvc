@@ -85,4 +85,11 @@ public class ClassesService {
 		entity.setTeacher(course.getTeacher());
 	}
 
+	@SuppressWarnings("serial")
+	public ClassDTO findDtoById(int id) {
+		return repo.findOneDto("select new com.jdc.online.model.dto.ClassDTO(c) from OnlineClass c where id = :id", 
+				new HashMap<String, Object>() {{put("id", id);}}, 
+				ClassDTO.class);
+	}
+
 }

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.jdc.online.model.entity.OnlineClass;
+
 import lombok.Data;
 
 @Data
@@ -22,4 +24,16 @@ public class ClassDTO {
 	private int duration;
 	private String requirements;
 	
+	public ClassDTO() {}
+	
+	public ClassDTO(OnlineClass c) {
+		this.id = c.getId();
+		this.code = c.getCourse().getCode();
+		this.startDate = c.getStartDate();
+		this.days = c.getDays();
+		this.times = c.getTimes();
+		this.fees = c.getFees();
+		this.duration = c.getDuration();
+		this.requirements = c.getRequirements();
+	}
 }

@@ -13,4 +13,6 @@ public interface BaseRepository<T, ID> extends JpaRepository<T, ID> {
 	<DTO> List<DTO> search(String jpql, Map<String, Object> params, Class<DTO> type);
 	Long count(String jpql, Map<String, Object> params);
 	
+	<D> D findOneDto(String jpql, Map<String, Object> params, Class<D> type);
+	
 }

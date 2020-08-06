@@ -35,7 +35,7 @@
 
 					<div class="field">
 						<label>From</label>
-						<input name="from" type="date" placeholder="Date From" />
+						<input name="from" class="date-input" type="date" placeholder="Date From" />
 					</div>
 
 					<div class="field">
@@ -87,7 +87,11 @@
 					<td th:text="${c.days}">Sat - Sun</td>
 					<td th:text="${c.times}">13:00 - 18:00</td>
 					<td>Available</td>
-					<td></td>
+					<td>
+						<a href="#" th:id="${c.id}" onclick="editClass(this.id);return false;">
+							<i class="pencil icon"></i>
+						</a>
+					</td>
 				</tr>
 				
 			</tbody>
@@ -97,9 +101,11 @@
 		<!-- Modal -->
 		<form th:action="@{/office/classes}" method="post" th:object="${dto}" class="ui small modal">
 		
-			<div class="header">Add New Class</div>
+			<div class="header" id="modalTitle">Add New Class</div>
 			
 			<div class="content ui form">
+			
+				<input type="hidden" th:field="*{id}">
 				
 				<div class="two fields">
 					<!-- Teachers -->
@@ -112,7 +118,7 @@
 					<!-- Course -->
 					<div class="field">
 						<label >Course</label>
-						<input  th:field="*{code}" id="courseInput" name="course" placeholder="Enter Course Name" list="courses">
+						<input  th:field="*{code}" placeholder="Enter Course Name" list="courses">
 						<datalist id="courses">
 							<option th:each="c : ${courses}" th:value="${c.code}" th:text="${c.name}"></option>
 						</datalist>
@@ -131,7 +137,7 @@
 					
 					<div class="field">
 						<label>Duration</label>
-						<input id="durationInput" type="number" th:field="*{duration}" />
+						<input type="number" th:field="*{duration}" />
 					</div>				
 				</div>		
 				
@@ -151,7 +157,7 @@
 					<!-- Fees -->
 					<div class="field">
 						<label >Fees</label>
-						<input id="feesInput" th:field="*{fees}" type="number" placeholder="Enter Fees" />
+						<input th:field="*{fees}" type="number" placeholder="Enter Fees" />
 					</div>					
 				
 				</div>
@@ -160,7 +166,7 @@
 				<!-- Remark -->
 				<div class="field">
 					<label >Remark</label>
-					<textarea id="remarkInput" th:field="*{requirements}" rows="3"></textarea>
+					<textarea th:field="*{requirements}" rows="3"></textarea>
 				</div>
 			
 			</div>
@@ -186,46 +192,11 @@
 		</form>
 		
 		
-		<script>
-			$(() => {
-				
-				$('.ui.modal').modal({
-					autofocus: false,
-					closable: false
-				})
-				
-				$('#addBtn').click(() => $('.ui.modal').modal('show'))
-				
-				$('.ui.dropdown').dropdown()
-				
-				$('#courseInput').change(() => {
-					let code = $('#courseInput').val()
-					let url = `/public/courses/${code}`
-					$.get(url, data => {
-						$('#feesInput').val(data.fees)
-						$('#durationInput').val(data.duration)
-						$('#remarkInput').val(data.requirements)
-					})
-				})
-				
-				
-				$('#teacherSelect').change(() => {
-					let teacherId = $('#teacherSelect').val()
-					let url = `/public/courses/teacher/${teacherId}`
-					
-					$.get(url, list => {
-						$('#courseInput').val('')
-						$('#courses').empty()
-						
-						list.forEach(data => {
-							$("<option>").text(data.name).val(data.code).appendTo($('#courses'))
-						})
-					})
-				})
-			})
-		
-		</script>
 	
+	</div>
+
+	<div layout:fragment="script">
+		<script type="text/javascript" th:src="@{/resources/scripts/class-list.js}"></script>
 	</div>
 
 </body>

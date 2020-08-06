@@ -33,6 +33,11 @@ public class BaseRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> implem
 		return query(jpql, params, Long.class).getSingleResult();
 	}
 	
+	@Override
+	public <D> D findOneDto(String jpql, Map<String, Object> params, Class<D> type) {
+		return query(jpql, params, type).getSingleResult();
+	}
+
 	private <D> TypedQuery<D> query(String jpql, Map<String, Object> params, Class<D> type) {
 		TypedQuery<D> query = em.createQuery(jpql, type);
 		
@@ -45,5 +50,6 @@ public class BaseRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> implem
 		return query;
 		
 	}
+
 
 }
