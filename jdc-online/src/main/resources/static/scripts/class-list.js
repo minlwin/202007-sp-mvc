@@ -6,7 +6,11 @@ $(() => {
 	})
 	
 	$('#addBtn').click(() => {
+		
 		$('#modalTitle').text('Add New Online Class')
+		
+		// clear inputs
+		
 		$('.ui.modal').modal('show')
 	})
 	
