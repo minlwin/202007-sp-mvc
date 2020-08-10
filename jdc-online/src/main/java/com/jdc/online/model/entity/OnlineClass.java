@@ -2,12 +2,15 @@ package com.jdc.online.model.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -33,6 +36,15 @@ public class OnlineClass implements Serializable{
 	private int fees;
 	private int duration;
 	private String requirements;
+	@Column(columnDefinition = "integer default 0")
+	private Status status;
+	
+	@OneToMany(mappedBy = "classRoom")
+	private List<Registration> registrations;
+	
+	public enum Status {
+		Available, Fixed, Finished
+	}
 	
 	public void setCourse(Course course) {
 		this.course = course;

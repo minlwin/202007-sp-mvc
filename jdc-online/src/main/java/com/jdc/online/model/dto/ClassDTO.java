@@ -15,6 +15,8 @@ public class ClassDTO {
 	private int id;
 	
 	private String code;
+	private String teacher;
+	private String course;
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate startDate;
@@ -35,5 +37,8 @@ public class ClassDTO {
 		this.fees = c.getFees();
 		this.duration = c.getDuration();
 		this.requirements = c.getRequirements();
+		
+		this.teacher = c.getCourse().getTeacher().getName();
+		this.course = c.getCourse().getName();
 	}
 }

@@ -10,6 +10,11 @@ $(() => {
 		$('#modalTitle').text('Add New Online Class')
 		
 		// clear inputs
+		$('.content.ui.form input').val("")
+		$('.content.ui.form textarea').val("")
+		$('#id').val('0')
+		$('#input-row').show()
+		$('#label-row').hide()
 		
 		$('.ui.modal').modal('show')
 	})
@@ -47,9 +52,14 @@ function editClass(id) {
 	let url = `/public/classes/${id}`
 	
 	$.get(url, dto => {
+		
+		let month = dto.startDate[1]
+		let monthStr = month < 10 ? "0" + month : month
+		let date = `${dto.startDate[0]}-${monthStr}-${dto.startDate[2]}`
+		
 		$('#id').val(dto.id)
 		$('#code').val(dto.code)
-		$('#startDate').val(dto.startDate)
+		$('#startDate').val(date)
 		$('#fees').val(dto.fees)
 		$('#duration').val(dto.duration)
 		$('#requirements').val(dto.requirements)
@@ -58,6 +68,13 @@ function editClass(id) {
 		
 		$('#modalTitle').text("Edit Online Class")
 		
+		$('#lblTeacher').val(dto.teacher)
+		$('#lblCourse').val(dto.course)
+		
+		$('#input-row').hide()
+		$('#label-row').show()
+
 		$('.ui.modal').modal('show')
 	})
 }
+

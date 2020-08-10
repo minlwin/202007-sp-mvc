@@ -5,14 +5,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.jdc.online.model.dto.ClassDTO;
+import com.jdc.online.model.dto.ClassForTeacher;
 import com.jdc.online.model.entity.Course;
 import com.jdc.online.model.entity.OnlineClass;
+import com.jdc.online.model.entity.Registration;
+import com.jdc.online.model.entity.Registration.Status;
 import com.jdc.online.model.repo.OnlineClassRepo;
 
 @Service
@@ -90,6 +97,43 @@ public class ClassesService {
 		return repo.findOneDto("select new com.jdc.online.model.dto.ClassDTO(c) from OnlineClass c where id = :id", 
 				new HashMap<String, Object>() {{put("id", id);}}, 
 				ClassDTO.class);
+	}
+
+	@Transactional
+	public List<ClassForTeacher> searchForTeacher(String course, LocalDate from, LocalDate to) {
+		
+		String teacher = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		StringBuffer sb = new StringBuffer("select c from OnlineClass c where c.teacher.email = :teacher");
+		Map<String, Object> params = new HashMap<>();
+		params.put("teacher", teacher);
+		
+		if(!StringUtils.isEmpty(course)) {
+			sb.append(" and (lower(c.course.code) like lower(:course) or lower(c.course.name) like lower(:course))");
+			params.put("course", course.concat("%"));
+		}
+		
+		if(null != from) {
+			sb.append(" and c.startDate >= :from");
+			params.put("from", from);
+		}
+		
+		if(null != to) {
+			sb.append(" and c.startDate <= :to");
+			params.put("to", to);
+		}
+		
+		return repo.search(sb.toString(), params).stream().map(c -> {
+			ClassForTeacher dto = new ClassForTeacher(c);
+			dto.setPending(getCount(c.getRegistrations(), r -> r.getStatus() == Status.Apply || r.getStatus() == Status.Paid));
+			dto.setAttend(getCount(c.getRegistrations(), r -> r.getStatus() == Status.Attend));
+			return dto;
+		}).collect(Collectors.toList());
+	}
+	
+	private int getCount(List<Registration> list, Predicate<Registration> filter) {
+		Long count = list.stream().filter(filter).count();
+		return count.intValue();
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.jdc.online.controller.teacher;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jdc.online.model.dto.ClassForTeacher;
 import com.jdc.online.service.ClassesService;
 
 @Controller("TeacherClasses")
@@ -31,9 +33,8 @@ public class ClassController {
 			ModelMap model
 			) {
 		
-		String teacher = "";
-		
-		model.put("list", service.search(course, teacher, from));
+		List<ClassForTeacher> list = service.searchForTeacher(course, from, to);
+		model.put("list", list);
 		return "/views/teacher/class-list";
 	}
 	

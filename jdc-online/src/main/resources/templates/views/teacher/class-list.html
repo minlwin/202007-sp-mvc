@@ -61,20 +61,20 @@
 					<th>Times</th>
 					<th>Status</th>
 					<th>Attends</th>
-					<th>Pendings</th>
+					<th>Waiting</th>
 					<th></th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr>
-					<td>Java SE</td>
-					<td>2020/08/01</td>
-					<td>Sat - Sun</td>
-					<td>13:00 - 18:00</td>
-					<td>Available</td>
-					<td>15</td>
-					<td>6</td>
+				<tr th:each="c : ${list}">
+					<td th:text="${c.course}">Java SE</td>
+					<td th:text="${c.startDate}">2020/08/01</td>
+					<td th:text="${c.days}">Sat - Sun</td>
+					<td th:text="${c.times}">13:00 - 18:00</td>
+					<td th:text="${c.status}">Available</td>
+					<td th:text="${c.attend}">15</td>
+					<td th:text="${c.pending}">6</td>
 					<td></td>
 				</tr>
 				

@@ -107,7 +107,7 @@
 			
 				<input type="hidden" th:field="*{id}">
 				
-				<div class="two fields">
+				<div id="input-row" class="two fields">
 					<!-- Teachers -->
 					<div class="field">
 						<label >Teacher</label>
@@ -124,9 +124,22 @@
 						</datalist>
 					</div>					
 					
-				
 				</div>	
 				
+				<div id="label-row" class="two fields">
+					<!-- Teachers -->
+					<div class="field">
+						<label >Teacher</label>
+						<input id="lblTeacher" type="text" readonly="readonly" />
+					</div>					
+					<!-- Course -->
+					<div class="field">
+						<label >Course</label>
+						<input id="lblCourse" type="text" readonly="readonly" />
+					</div>					
+					
+				</div>	
+
 				<div class="two fields">
 					<!-- Start Date -->
 					<div class="field">
