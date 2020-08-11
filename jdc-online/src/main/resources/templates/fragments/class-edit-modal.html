@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="modal">
+		<!-- Modal -->
+		<form id="editForm" th:action="@{/office/classes}" method="post" th:object="${dto}" class="ui small modal">
+		
+			<div class="header">Edit Class Room</div>
+			
+			<div class="content ui form">
+			
+				<input type="hidden" id="e_id" th:field="*{id}">
+				<input type="hidden" id="e_code" th:field="*{code}" />
+				
+				<div id="label-row" class="two fields">
+					<div class="field">
+						<label >Teacher</label>
+						<input id="e_teacher" type="text" readonly="readonly" />
+					</div>					
+					<!-- Course -->
+					<div class="field">
+						<label >Course</label>
+						<input id="e_course" type="text" readonly="readonly" />
+					</div>					
+					
+				</div>	
+
+				<div class="two fields">
+					<!-- Start Date -->
+					<div class="field">
+						<label >Start Date</label>
+						<input id="e_startDate" th:field="*{startDate}" type="date" />
+					</div>					
+					
+					
+					<div class="field">
+						<label>Duration</label>
+						<input id="e_duration" type="number" th:field="*{duration}" />
+					</div>				
+				</div>		
+				
+				<div class="three fields">
+					<!-- Days -->
+					<div class="field">
+						<label >Days</label>
+						<input id="e_days" type="text" th:field="*{days}" placeholder="Enter Days" />
+					</div>					
+					
+					<!-- Times -->
+					<div class="field">
+						<label >Times</label>
+						<input id="e_times" type="text" th:field="*{times}" placeholder="Enter Times" />
+					</div>					
+					
+					<!-- Fees -->
+					<div class="field">
+						<label >Fees</label>
+						<input id="e_fees" th:field="*{fees}" type="number" placeholder="Enter Fees" />
+					</div>					
+				
+				</div>
+				
+				
+				<!-- Remark -->
+				<div class="field">
+					<label >Remark</label>
+					<textarea id="e_requirements" th:field="*{requirements}" rows="3"></textarea>
+				</div>
+			
+			</div>
+			
+			<div class="actions">
+
+				<button type="button" class="ui animated blue cancel button">
+					<div class="visible content">Close</div>
+					<div class="hidden content">
+						<i class="delete icon"></i>
+					</div>
+				</button>
+			
+				<button class="ui animated red button">
+					<div class="visible content">Save</div>
+					<div class="hidden content">
+						<i class="save icon"></i>
+					</div>
+				</button>
+			
+			</div>
+		
+		</form>
+
+	</div>
+
+</body>
+</html>

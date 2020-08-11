@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="modal">
+		<!-- Modal -->
+		<form id="createForm" th:action="@{/office/classes}" method="post" th:object="${dto}" class="ui small modal">
+		
+			<div class="header" >Create Class Room</div>
+			
+			<div class="content ui form">
+			
+				<input type="hidden" th:field="*{id}">
+				
+				<div class="two fields">
+					<!-- Teachers -->
+					<div class="field">
+						<label >Teacher</label>
+						<select id="teacherSelect" name="teacher" class="ui dropdown">
+							<option th:each="t : ${teachers}" th:value="${t.id}" th:text="${t.name}"></option>
+						</select>
+					</div>					
+					<!-- Course -->
+					<div class="field">
+						<label >Course</label>
+						<input  th:field="*{code}" placeholder="Enter Course Name" list="courses">
+						<datalist id="courses">
+							<option th:each="c : ${courses}" th:value="${c.code}" th:text="${c.name}"></option>
+						</datalist>
+					</div>					
+					
+				</div>	
+				
+				<div class="two fields">
+					<!-- Start Date -->
+					<div class="field">
+						<label >Start Date</label>
+						<input th:field="*{startDate}" type="date" />
+					</div>					
+					
+					
+					<div class="field">
+						<label>Duration</label>
+						<input type="number" th:field="*{duration}" />
+					</div>				
+				</div>		
+				
+				<div class="three fields">
+					<!-- Days -->
+					<div class="field">
+						<label >Days</label>
+						<input type="text" th:field="*{days}" placeholder="Enter Days" />
+					</div>					
+					
+					<!-- Times -->
+					<div class="field">
+						<label >Times</label>
+						<input type="text" th:field="*{times}" placeholder="Enter Times" />
+					</div>					
+					
+					<!-- Fees -->
+					<div class="field">
+						<label >Fees</label>
+						<input th:field="*{fees}" type="number" placeholder="Enter Fees" />
+					</div>					
+				
+				</div>
+				
+				
+				<!-- Remark -->
+				<div class="field">
+					<label >Remark</label>
+					<textarea th:field="*{requirements}" rows="3"></textarea>
+				</div>
+			
+			</div>
+			
+			<div class="actions">
+
+				<button type="button" class="ui animated blue cancel button">
+					<div class="visible content">Close</div>
+					<div class="hidden content">
+						<i class="delete icon"></i>
+					</div>
+				</button>
+			
+				<button class="ui animated red button">
+					<div class="visible content">Save</div>
+					<div class="hidden content">
+						<i class="save icon"></i>
+					</div>
+				</button>
+			
+			</div>
+		
+		</form>
+
+	</div>
+
+</body>
+</html>

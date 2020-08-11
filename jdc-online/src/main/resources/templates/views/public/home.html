@@ -32,13 +32,13 @@
 						<img th:src="@{/resources/images/course.png}" />
 					</span>
 					<span class="content">
-						<span class="header">Course Name</span>
-						<span class="meta">180,000 MMK</span>
+						<span class="header" th:text="${item.course}">Course Name</span>
+						<span class="meta" th:text="${item.fees + ' MMK'}">180,000 MMK</span>
 					</span>
 					<span class="extra content">
-						<span><i class="user icon"></i> 25 Students</span>
+						<span><i class="user icon"></i> <span th:text="${item.applications}"></span> Students</span>
 						<span class="right floated">
-							<i class="calendar icon"></i> Start 2020/08/01
+							<i class="calendar icon"></i> Start <span th:text="${item.startDate}"></span>
 						</span>
 					</span>
 				</a>

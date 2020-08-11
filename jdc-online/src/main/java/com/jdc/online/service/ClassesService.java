@@ -1,7 +1,6 @@
 package com.jdc.online.service;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.jdc.online.model.dto.ClassDTO;
+import com.jdc.online.model.dto.ClassForPublic;
 import com.jdc.online.model.dto.ClassForTeacher;
 import com.jdc.online.model.entity.Course;
 import com.jdc.online.model.entity.OnlineClass;
@@ -32,16 +32,17 @@ public class ClassesService {
 	private CourseService courses;
 	
 
-	public List<OnlineClass> getApplyableClasses() {
-		return Arrays.asList(
-				new OnlineClass(),
-				new OnlineClass(),
-				new OnlineClass(),
-				new OnlineClass(),
-				new OnlineClass(),
-				new OnlineClass()
-		);
+	@SuppressWarnings("serial")
+	public List<ClassForPublic> getApplyableClasses() {
 		
+		StringBuffer sb = new StringBuffer("select new com.jdc.online.model.dto.ClassForPublic(c, count(r)) from OnlineClass c left outer join c.registrations r where c.status = :status group by c.id order by c.startDate");
+		Map<String, Object> params = new HashMap<>() {
+			{
+				put("status", OnlineClass.Status.Available);
+			}
+		};
+		
+		return repo.search(sb.toString(), params, ClassForPublic.class);		
 	}
 	
 	public OnlineClass findById(int id) {
@@ -86,6 +87,10 @@ public class ClassesService {
 		entity.setRequirements(dto.getRequirements());
 		entity.setStartDate(dto.getStartDate());
 		entity.setTimes(dto.getTimes());
+		
+		if(entity.getId() == 0) {
+			entity.setStatus(OnlineClass.Status.Available);
+		}
 		
 		Course course = courses.findByCode(dto.getCode());
 		entity.setCourse(course);
