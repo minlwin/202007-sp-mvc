@@ -53,6 +53,7 @@ public class AccountService {
 	}
 
 	public void save(Account account) {
+		account.setActivated(true);
 		repo.save(account);
 	}
 

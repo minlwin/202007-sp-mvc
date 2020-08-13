@@ -28,6 +28,7 @@ public class InitUserService {
 			office.setPassword(encoder.encode("office"));
 			office.setRole(Role.Office);
 			office.setDeleted(false);
+			office.setActivated(true);
 			
 			repo.save(office);
 		}

@@ -24,7 +24,7 @@ public class OnlineUserDetailsService implements UserDetailsService{
 						.password(a.getPassword())
 						.username(a.getEmail())
 						.accountExpired(a.isDeleted())
-						.accountLocked(a.isDeleted())
+						.accountLocked(!a.isActivated())
 						.authorities(a.getRole().name())
 						.build())
 				.orElseThrow(() -> new EntityNotFoundException("Please check your login id!"));

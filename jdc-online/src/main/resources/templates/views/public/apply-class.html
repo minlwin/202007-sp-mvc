@@ -29,7 +29,7 @@
 					
 					<div class="ui two columns grid">
 					
-						<form method="post" th:if="${form != null}" class="column ui form" th:object="${form}">
+						<form th:action="@{/public/{id}/apply(id=${classRoom.id})}" method="post" th:if="${form != null}" class="column ui form" th:object="${form}">
 							<h3>Application</h3>
 						
 							<div class="field">
