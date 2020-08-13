@@ -1,0 +1,14 @@
+# create network
+docker network create location
+
+# build mysql database image
+docker build -t minlwin/location-mysql .
+
+# run database container with network
+docker run -d --name location-mysql --network location minlwin/location-mysql 
+
+# build spring boots mvc application
+docker build -t minlwin/location-mvc .
+
+# run spring boots container with network
+docker run -d -p 8080:8080 --name location-mvc --network location minlwin/location-mvc

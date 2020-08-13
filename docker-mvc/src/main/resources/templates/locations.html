@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Location</title>
+
+<link rel="stylesheet" th:href="@{/resources/bootstrap.min.css}" />
+<script th:src="@{/resources/jquery.min.js}"></script>
+<script th:src="@{/resources/popper.min.js}"></script>
+<script th:src="@{/resources/bootstrap.min.js}"></script>
+
+</head>
+<body>
+
+	<div class="container">
+		
+		<div class="jumbotron mr-4">
+			<h1>Locations</h1>
+			
+			<p>Spring Boots application with Docker Container</p>
+		</div>
+		
+		
+		<div class="row">
+			
+			<div class="col-4">
+			
+				<h3>Divisions</h3>
+				
+				<div class="list-group">
+					<a th:each="d : ${divisions}" th:text="${d.name}" th:href="@{/locations(d=${d.id})}" class="list-group-item list-group-item-action"></a>
+				</div>
+			
+			</div>
+			
+			<div class="col-8">
+			
+				<h3>Townships</h3>
+				
+				<div class="d-flex flex-wrap" >
+					<div class="w-50 pr-2 pb-2" th:each="item : ${townships}">
+						<div class="card">
+							<div class="card-body">
+								<span th:text="${item.name}"></span>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+		
+		</div>
+
+	</div>
+</body>
+</html>
