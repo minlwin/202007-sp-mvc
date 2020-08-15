@@ -20,27 +20,27 @@
 				<i class="search icon"></i> Search
 			</div>
 			
-			<div class="ui form">
+			<form  th:action="@{/office/registrations}" class="ui form">
 			
 				<div class="four fields">
 				
 					<div class="field">
 						<label>Status</label>
-						<select class="ui dropdown">
-							<option>All</option>
-							<option>Pending</option>
-							<option>Attended</option>
+						<select name="status" class="ui dropdown" >
+							<option value="-1">All</option>
+							<option th:each="s : ${statuses}" th:text="${s}" th:selected="${#strings.equals(s, param.status)}" >Apply</option>
 						</select>
+						
 					</div>
 
 					<div class="field">
 						<label>Course</label>
-						<input type="text" placeholder="Search Course" />
+						<input th:value="${param.course}" name="course" type="text" placeholder="Search Course" />
 					</div>
 
 					<div class="field">
 						<label>Student</label>
-						<input type="text" placeholder="Search Student" />
+						<input th:value="${param.student}" name="student" type="text" placeholder="Search Student" />
 					</div>
 					
 					<div class="field">
@@ -58,7 +58,7 @@
 
 				</div>
 			
-			</div>
+			</form>
 		</div>
 		
 		<!-- Data List -->
@@ -73,6 +73,17 @@
 					<th>Email</th>
 				</tr>
 			</thead>
+			
+			<tbody>
+				<tr th:each="r : ${list}">
+					<td th:text="${r.classRoom.course.name}"></td>
+					<td th:text="${r.classRoom.startDate}"></td>
+					<td th:text="${r.status}"></td>
+					<td th:text="${r.student.name}"></td>
+					<td th:text="${r.student.phone}"></td>
+					<td th:text="${r.student.email}"></td>
+				</tr>
+			</tbody>
 		</table>
 		
 		<script type="text/javascript">

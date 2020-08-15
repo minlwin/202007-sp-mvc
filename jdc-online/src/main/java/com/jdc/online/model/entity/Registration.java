@@ -39,6 +39,6 @@ public class Registration implements Serializable {
 	private String remark;
 
 	public enum Status {
-		Apply, Paid, Attend, Cancel
+		Apply, Paid, Attend
 	}
 }

@@ -1,11 +1,15 @@
 package com.jdc.online.service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.jdc.online.model.dto.Application;
 import com.jdc.online.model.entity.Account;
@@ -67,6 +71,30 @@ public class RegistrationService {
 		registration = registrations.save(registration);
 		// return registration id
 		return registration.getId();
+	}
+
+
+	public List<Registration> search(String status, String course, String student) {
+		
+		StringBuffer sb = new StringBuffer("select r from Registration r where 1 = 1");
+		Map<String, Object> params = new HashMap<>();
+		
+		if(!StringUtils.isEmpty(status) && !"-1".equals(status)) {
+			sb.append(" and r.status = :status");
+			params.put("status", Status.valueOf(status));
+		}
+		
+		if(!StringUtils.isEmpty(course)) {
+			sb.append(" and (lower(r.classRoom.course.code) like lower(:course) or lower(r.classRoom.course.name) like lower(:course))");
+			params.put("course", course.concat("%"));
+		}
+
+		if(!StringUtils.isEmpty(student)) {
+			sb.append(" and lower(r.student.name) like lower(:student)");
+			params.put("student", student.concat("%"));
+		}
+		
+		return registrations.search(sb.toString(), params);
 	}
 
 }
