@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/layout/public}">
+<head>
+<meta charset="UTF-8">
+<title>Students</title>
+</head>
+<body>
+
+	<div layout:fragment="title">
+		<i class="users icon"></i> Student in Class Room
+	</div>
+	
+	<div layout:fragment="content">
+		
+		<div class="ui relaxed horizontal list">
+			
+			<div class="item">
+				
+				<div class="content">
+					<div class="header">
+						Course
+					</div>
+					<div class="description" th:text="${classRoom.course.name}">Course Name</div>
+				</div>
+			
+			</div>
+		
+			<div class="item">
+				
+				<div class="content">
+					<div class="header">
+						Start Date
+					</div>
+					<div class="description" th:text="${classRoom.startDate}">Course Name</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+				
+				<div class="content">
+					<div class="header">
+						Days
+					</div>
+					<div class="description" th:text="${classRoom.days}">Course Name</div>
+				</div>
+			
+			</div>
+
+			<div class="item">
+				
+				<div class="content">
+					<div class="header">
+						Times
+					</div>
+					<div class="description" th:text="${classRoom.times}">Course Name</div>
+				</div>
+			
+			</div>
+
+
+		</div>
+		
+		<div id="statusTabs" class="ui menu">
+		
+			<a href="#" class="item active" data-tab="Apply">
+				Apply
+			</a>
+			<a href="#" class="item" data-tab="Paid">
+				Paid
+			</a>
+			<a href="#" class="item" data-tab="Attend">
+				Attend
+			</a>
+		</div>
+		
+		
+		<div class="ui tab active" data-tab="Apply">
+		
+			<h1>Active</h1>
+		</div>
+		
+		<div class="ui tab" data-tab="Paid">
+		
+			<h1>Paid</h1>
+		</div>
+
+		<div class="ui tab" data-tab="Attend">
+		
+			<h1>Attend</h1>
+		</div>
+		
+		
+		<script>
+			$(() => $('#statusTabs .item').tab())
+		
+		</script>
+	</div>
+
+</body>
+</html>

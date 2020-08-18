@@ -14,9 +14,9 @@ import org.springframework.util.StringUtils;
 import com.jdc.online.model.dto.Application;
 import com.jdc.online.model.entity.Account;
 import com.jdc.online.model.entity.Account.Role;
-import com.jdc.online.model.entity.Registration.Status;
 import com.jdc.online.model.entity.AccountActivation;
 import com.jdc.online.model.entity.Registration;
+import com.jdc.online.model.entity.Registration.Status;
 import com.jdc.online.model.repo.AccountRepo;
 import com.jdc.online.model.repo.RegistrationRepo;
 
@@ -96,5 +96,6 @@ public class RegistrationService {
 		
 		return registrations.search(sb.toString(), params);
 	}
+
 
 }

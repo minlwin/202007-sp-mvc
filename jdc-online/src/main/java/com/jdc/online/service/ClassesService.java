@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +16,13 @@ import org.springframework.util.StringUtils;
 import com.jdc.online.model.dto.ClassDTO;
 import com.jdc.online.model.dto.ClassForPublic;
 import com.jdc.online.model.dto.ClassForTeacher;
+import com.jdc.online.model.entity.Account;
 import com.jdc.online.model.entity.Course;
 import com.jdc.online.model.entity.OnlineClass;
 import com.jdc.online.model.entity.Registration;
 import com.jdc.online.model.entity.Registration.Status;
 import com.jdc.online.model.repo.OnlineClassRepo;
+import com.jdc.online.model.repo.RegistrationRepo;
 
 @Service
 public class ClassesService {
@@ -30,6 +32,9 @@ public class ClassesService {
 	
 	@Autowired
 	private CourseService courses;
+	
+	@Autowired
+	private RegistrationRepo registrations;
 	
 
 	@SuppressWarnings("serial")
@@ -133,12 +138,19 @@ public class ClassesService {
 			dto.setPending(getCount(c.getRegistrations(), r -> r.getStatus() == Status.Apply || r.getStatus() == Status.Paid));
 			dto.setAttend(getCount(c.getRegistrations(), r -> r.getStatus() == Status.Attend));
 			return dto;
-		}).collect(Collectors.toList());
+		}).collect(toList());
 	}
 	
 	private int getCount(List<Registration> list, Predicate<Registration> filter) {
 		Long count = list.stream().filter(filter).count();
 		return count.intValue();
+	}
+
+	public Map<Status, List<Account>> findStudentsForClasss(int id) {
+		return registrations.findByClassRoomId(id)
+				.stream()
+				.collect(groupingBy(Registration::getStatus, 
+						mapping(Registration::getStudent, toList())));
 	}
 
 }

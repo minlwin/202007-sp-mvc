@@ -28,7 +28,7 @@
 						<label>Status</label>
 						<select name="status" class="ui dropdown" >
 							<option value="-1">All</option>
-							<option th:each="s : ${statuses}" th:text="${s}" th:selected="${#strings.equals(s, param.status)}" >Apply</option>
+							<option th:each="s : ${statuses}" th:text="${s}" th:selected="${#strings.equals(param.status, s)}" >Apply</option>
 						</select>
 						
 					</div>

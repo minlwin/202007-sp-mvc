@@ -75,7 +75,11 @@
 					<td th:text="${c.status}">Available</td>
 					<td th:text="${c.attend}">15</td>
 					<td th:text="${c.pending}">6</td>
-					<td></td>
+					<td>
+						<a th:href="@{/teacher/classes/{id}/students(id=${c.id})}">
+							<i class="users icon"></i>
+						</a>
+					</td>
 				</tr>
 				
 			</tbody>
