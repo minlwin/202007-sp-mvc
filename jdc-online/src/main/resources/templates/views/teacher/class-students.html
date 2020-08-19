@@ -14,56 +14,63 @@
 	
 	<div layout:fragment="content">
 		
-		<div class="ui relaxed horizontal list">
-			
-			<div class="item">
+		<div class="ui padded stacked segment">
+			<div class="ui header">Class Informations</div>
+
+			<div class="ui relaxed horizontal list">
 				
-				<div class="content">
-					<div class="header">
-						Course
+				<div class="item">
+					
+					<div class="content">
+						<div class="header">
+							Course
+						</div>
+						<div class="description" th:text="${classRoom.course.name}">Course Name</div>
 					</div>
-					<div class="description" th:text="${classRoom.course.name}">Course Name</div>
+				
 				</div>
 			
-			</div>
-		
-			<div class="item">
-				
-				<div class="content">
-					<div class="header">
-						Start Date
+				<div class="item">
+					
+					<div class="content">
+						<div class="header">
+							Start Date
+						</div>
+						<div class="description" th:text="${classRoom.startDate}">Course Name</div>
 					</div>
-					<div class="description" th:text="${classRoom.startDate}">Course Name</div>
-				</div>
-			
-			</div>
-
-			<div class="item">
 				
-				<div class="content">
-					<div class="header">
-						Days
-					</div>
-					<div class="description" th:text="${classRoom.days}">Course Name</div>
 				</div>
-			
-			</div>
-
-			<div class="item">
+	
+				<div class="item">
+					
+					<div class="content">
+						<div class="header">
+							Days
+						</div>
+						<div class="description" th:text="${classRoom.days}">Course Name</div>
+					</div>
 				
-				<div class="content">
-					<div class="header">
-						Times
-					</div>
-					<div class="description" th:text="${classRoom.times}">Course Name</div>
 				</div>
-			
+	
+				<div class="item">
+					
+					<div class="content">
+						<div class="header">
+							Times
+						</div>
+						<div class="description" th:text="${classRoom.times}">Course Name</div>
+					</div>
+				
+				</div>
+	
+	
 			</div>
-
-
+			
 		</div>
 		
-		<div id="statusTabs" class="ui menu">
+		<div class="ui hidden divider"></div>
+		
+		<div id="statusTabs" class="ui top attached tabular menu">
 		
 			<a href="#" class="item active" data-tab="Apply">
 				Apply
@@ -76,21 +83,21 @@
 			</a>
 		</div>
 		
+		<div class="ui bottom attached padded segment">
+			<div class="ui tab active" data-tab="Apply">
+				<div th:replace="fragments/class-student-table :: table(${students.get(T(com.jdc.online.model.entity.Registration.Status).Apply)})"></div>
+			</div>
+			
+			<div class="ui tab" data-tab="Paid">
+				<div th:replace="fragments/class-student-table :: table(${students.get(T(com.jdc.online.model.entity.Registration.Status).Paid)})"></div>
+			</div>
+	
+			<div class="ui tab" data-tab="Attend">
+				<div th:replace="fragments/class-student-table :: table(${students.get(T(com.jdc.online.model.entity.Registration.Status).Attend)})"></div>
+			</div>
 		
-		<div class="ui tab active" data-tab="Apply">
-		
-			<h1>Active</h1>
 		</div>
 		
-		<div class="ui tab" data-tab="Paid">
-		
-			<h1>Paid</h1>
-		</div>
-
-		<div class="ui tab" data-tab="Attend">
-		
-			<h1>Attend</h1>
-		</div>
 		
 		
 		<script>

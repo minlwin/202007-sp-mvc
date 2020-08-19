@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:fragment="table(items)">
+			
+		<table class="ui table" th:unless="${#lists.isEmpty(items)}" >
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Activate</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="s : ${items}">
+					<td th:text="${s.name}"></td>
+					<td th:text="${s.phone}"></td>
+					<td th:text="${s.email}"></td>
+					<td>
+						<i th:unless="${s.activated}" class="lock icon"></i>
+						<i th:if="${s.activated}" class="check icon"></i>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+		
+		<div class="ui message" th:if="${#lists.isEmpty(items)}">
+			There is no students
+		</div>		
+		
+	</div>
+
+</body>
+</html>
